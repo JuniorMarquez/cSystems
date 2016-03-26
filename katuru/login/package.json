@@ -2,7 +2,6 @@
   "name": "Katuru Login",
   "description": "Login de Katuru ERP",
   "version": "1.0.0",
-  "authors": ["H-SC"],
   "scripts": {
     "init": "npm install",
     "install": "bower install",
