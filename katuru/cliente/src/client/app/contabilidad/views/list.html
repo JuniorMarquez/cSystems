@@ -1,0 +1,485 @@
+<section class="mainbar">
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker5').datetimepicker(
+                  { format: 'MM/DD/YYYY',
+                  locale: 'es'});   
+            });
+</script>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker6').datetimepicker(
+                  { format: 'MM/DD/YYYY',
+                  locale: 'es'});   
+            });
+</script>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Contabilidad
+    </div>
+    <div class="panel-body">
+
+
+
+<!-- inicio modal -->
+<div class="modal fade" id="myModal">
+<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title">Detalle de cuenta x cobrar</h3>
+        </div>
+        <div class="modal-body">
+ <table class="tablaMax table table-striped  table-hover">
+ <tr>
+ 
+  <td colspan="3"><div class="pull-right"><b>Fecha:</b>  
+  </div>
+  </td>
+  <td>{{vm.cuenta.createdAt | date: "dd/MM/yyyy"}}</td>
+  
+</tr>
+<tr>
+  <td colspan="3"><div class="pull-right"><b>Nombre / Razón Social:</b> {{vm.cuenta.nombreRazon}}  
+  </div>
+  </td>
+  <td><b># Factura:</b>{{vm.cuenta.numeroFactura}}</td>
+</tr>
+
+<tr>
+  <td colspan="3"><div class="pull-right"><b>Estado:</b> {{vm.cuenta.estado}}  
+  </div>
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td colspan="4"> <center><ul class="today-datas">
+               <li class="badge badge-warning">
+                <div class="pull-left">
+              <!--     <i class="fa fa-money"></i>  -->
+                 <!--  <i class="fa fa-arrow-down"></i>  -->
+                </div>
+                <div class="datas-text pull-right">
+                  <span class="bold"> Bs.F. {{vm.cuenta.monto | number : 2}}</span> 
+                   <span class="bold">Fecha de Vencimiento: </span> 
+                 <!--  <b>Fecha de Vencimiento: </b>
+                  --> 
+                  <b><span  class="label label-danger">{{vm.cuenta.fechaVencimiento | date:"dd/MM/yyyy"}}</span></b>
+                  <!-- </br>
+                   <b>{{vm.par.firstDay|date:"dd/MM/yyyy"}} - {{vm.par.lastDay|date:"dd/MM/yyyy" }}</b> -->
+                  <!-- 
+    <a class="btn btn-success btn-xs" href="/proveedor">
+    Acceder
+    </a> -->
+                </div>
+              </li>
+
+            </ul></center></td>
+            <td></td>
+  
+</tr>
+
+</table>
+
+
+
+          <div class="form-group">
+           <!-- <input class="btn btn-warning btn-sm pull-right" value="Reset" type="button">
+
+
+-->
+            <div class="clearfix"></div>
+          </div>
+    </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default " data-dismiss="modal">Cerrar</button>
+          <button type="button" data-toggle="modal" 
+title="Registrar Devolución"
+        data-target="#myModal3" class="btn btn-primary">Registrar pago de cuenta </button> 
+         <button type="button" 
+title="Aceptar"
+       ng-click="vm.aceptar()" data-dismiss="modal"class="btn btn-success">Aceptar </button> 
+        </div>
+        <!-- ng-click="vm.registrarPago()" -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+<!-- fin modal -->
+
+
+<!-- inicio modal -->
+<div class="modal fade" id="myModal3">
+<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title">Detalle de cuenta x cobrar</h3>
+        </div>
+        <div class="modal-body">
+
+
+
+
+          <div class="form-group">
+           <!-- <input class="btn btn-warning btn-sm pull-right" value="Reset" type="button">
+
+
+--><div class="col-md-6">
+      
+
+ <input type="number" class="form-control" 
+               ng-model="vm.cuenta.montoPago" 
+               id="montoPago"   name="montoPago"
+               tabindex="1" placeholder="Monto ">
+
+    </div>
+            <div class="clearfix"></div>
+          </div>
+    </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default " data-dismiss="modal">Cerrar</button>
+           <button type="button" data-dismiss="modal" ng-click="vm.validar()"class="btn btn-primary">Validar </button> 
+        </div>
+        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+
+
+
+
+
+
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-4">
+            <div class="pull-right">
+              <span class="glyphicon glyphicon-filter" ></span>
+              Filtrar
+            </div>
+          </div>
+        <div class="col-md-3">
+            <div class='input-group date' id='datetimepicker5' datetimepicker  ng-model="vm.contabilidad.fechaInicio" ng-change="vm.filtrado3()" >
+            <input type='text' class="form-control" Placeholder="Desde">
+            <span class="input-group-addon" >
+            <span class="glyphicon glyphicon-calendar" ></span>
+            </span>
+          </div>
+        </div>
+
+
+        <div class="col-md-3">
+          <div class='input-group date' id='datetimepicker6' datetimepicker  ng-model="vm.contabilidad.fechaFin" ng-change="vm.filtrado3()">
+            <input type='text' class="form-control" Placeholder="Hasta" >
+            <span class="input-group-addon" >
+            <span class="glyphicon glyphicon-calendar" ></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/contabilidad/create">
+          <i class="glyphicon glyphicon-open"></i> New Contabilidad
+        </a>
+      </div> -->
+<!-- 
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="contabilidad in $data">
+              <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{contabilidad.name}}</td>
+              <td data-title="'Address'" sortable="'address'" filter="{'address': 'text'}">{{contabilidad.address}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/contabilidad/{{contabilidad.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/contabilidad/{{contabilidad.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(contabilidad)" item="contabilidad">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table> -->
+    <tabset>
+    <tab heading="Ingresos">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="today-datas">
+               <li class="badge badge-success">
+                <div class="pull-left">
+                  <i class="fa fa-money"></i> 
+                 <!--  <i class="fa fa-arrow-down"></i>  -->
+                </div>
+                <div class="datas-text pull-right">
+                  <span class="bold"> Bs.F. {{vm.contabilidad.montoIngresosMes | number : 2}}</span> 
+                  <b>Ingresos</b>
+                  </br>
+                  <b>{{vm.par.mensaje}}</b>
+                  </br>
+                   <b>{{vm.par.firstDay|date:"dd/MM/yyyy"}} - {{vm.par.lastDay|date:"dd/MM/yyyy" }}</b>
+                  <!-- 
+    <a class="btn btn-success btn-xs" href="/proveedor">
+    Acceder
+    </a> -->
+                </div>
+              </li>
+
+                           <!--  <li class="borange">
+                                <div class="pull-left"><i class="fa fa-shopping-basket"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">{{vm.articulos2.length}}</span> Productos registrados
+                                    </br> <a class="btn btn-success btn-xs" href="/articulo">
+                  Acceder
+                </a>
+                                </div>
+                               
+                            </li> -->
+    <!--
+    -->
+            </ul>
+          </div>
+        </div>  
+      </div>
+      <tabset>
+        <tab heading="Listado de ingresos">
+          <b>Desde:</b> {{vm.par.firstDay|date:"dd/MM/yyyy"}}<b></br>Hasta:</b> {{vm.par.lastDay|date:"dd/MM/yyyy"}}
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-search"></i>
+              </div>
+              <input type="text" class="form-control" placeholder="Buscar" ng-model="searchFish">
+            </div>      
+          </div>
+
+<!-- /.modal -->
+
+          <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+            <tr ng-repeat="movimiento in vm.contabilidad.ingresos | filter:searchFish">
+              <td data-title="'Categoria'" >{{movimiento.categoria}}</td>
+               <td data-title="'Concepto'" >{{movimiento.concepto}}</td>
+              <td data-title="'Fecha'" >{{movimiento.createdAt | date :"dd / MM / yyyy - h:mm a"}}</td>
+              <td data-title="'Monto'" >{{movimiento.monto}}</td>
+              
+              
+              <td>
+                <div class="pull-right">
+                  <div class="table-actions">
+
+                      <!--<a class="btn btn-default btn-xs" title="Ver detalles" href="/vent/{{vent.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>-->
+                     <!-- <a class="btn btn-default btn-xs"btn-xs title="Editar" href="/vent/{{vent.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>-->
+                     <!--  <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(vent)" item="vent">
+                        <span class="glyphicon glyphicon-remove-circle"></span> 
+                      </a> -->
+                                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </tab>
+      <tab heading="Graficos">
+  
+      </tab>
+</tabset>
+
+
+    </tab>
+    <tab heading="Egresos">
+    <tabset>
+     <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="today-datas">
+               <li class="badge badge-important">
+                <div class="pull-left">
+                  <i class="fa fa-money"></i> 
+                 <!--  <i class="fa fa-arrow-down"></i>  -->
+                </div>
+                <div class="datas-text pull-right">
+                  <span class="bold"> Bs.F. {{vm.contabilidad.montoEgresosMes | number : 2}}</span> 
+                  <b>Engresos</b>
+                  </br>
+                  <b>{{vm.par.mensaje}}</b>
+                  </br>
+                   <b>{{vm.par.firstDay|date:"dd/MM/yyyy"}} - {{vm.par.lastDay|date:"dd/MM/yyyy"}}</b>
+                  </br> <!-- 
+    <a class="btn btn-success btn-xs" href="/proveedor">
+    Acceder
+    </a> -->
+                </div>
+              </li>
+
+                           <!--  <li class="borange">
+                                <div class="pull-left"><i class="fa fa-shopping-basket"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">{{vm.articulos2.length}}</span> Productos registrados
+                                    </br> <a class="btn btn-success btn-xs" href="/articulo">
+                  Acceder
+                </a>
+                                </div>
+                               
+                            </li> -->
+    <!--
+    -->
+            </ul>
+          </div>
+        </div>  
+      </div>
+    <tab heading="Listado de egresos">
+          <b>Desde:</b> {{vm.par.firstDay|date:"dd/MM/yyyy"}}<b></br>Hasta:</b> {{vm.par.lastDay|date:"dd/MM/yyyy"}}
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-search"></i>
+              </div>
+              <input type="text" class="form-control" placeholder="Buscar" ng-model="searchFish">
+            </div>      
+          </div>
+
+<!-- /.modal -->
+
+          <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+            <tr ng-repeat="movimiento in vm.contabilidad.egresos | filter:searchFish">
+              <td data-title="'Categoria'" >{{movimiento.categoria}}</td>
+               <td data-title="'Concepto'" >{{movimiento.concepto}}</td>
+              <td data-title="'Fecha'" >{{movimiento.createdAt | date :"dd / MM / yyyy - h:mm a"}}</td>
+              <td data-title="'Monto'" >{{movimiento.monto}}</td>
+              
+              
+              <td>
+                <div class="pull-right">
+                  <div class="table-actions">
+
+                      <!--<a class="btn btn-default btn-xs" title="Ver detalles" href="/vent/{{vent.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>-->
+                     <!-- <a class="btn btn-default btn-xs"btn-xs title="Editar" href="/vent/{{vent.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>-->
+                     <!--  <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(vent)" item="vent">
+                        <span class="glyphicon glyphicon-remove-circle"></span> 
+                      </a> -->
+                   <!--  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+title="Registrar Devolución"
+        data-target="#myModal" ng-click="vm.cargarInfo($index)" >
+                    <i class="glyphicon fa  fa-cloud-upload"></i>
+                    </button> -->
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </tab>
+        <tab  heading="Graficos"> 
+       
+    </tab>
+    </tabset>
+    </tab>
+    <tab heading="Cuentas x cobrar">
+     <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="today-datas">
+               <li class="badge badge-warning">
+                <div class="pull-left">
+                  <i class="fa fa-money"></i> 
+                 <!--  <i class="fa fa-arrow-down"></i>  -->
+                </div>
+                <div class="datas-text pull-right">
+                  <span class="bold"> Bs.F. {{vm.contabilidad.montoCuentas | number : 2}}</span> 
+                  <b>Cuentas x cobrar</b>
+                  </br>
+                  <b>{{vm.par.mensaje}}</b>
+                  </br>
+                   <b>{{vm.par.firstDay|date:"dd/MM/yyyy"}} - {{vm.par.lastDay|date:"dd/MM/yyyy" }}</b>
+                  <!-- 
+    <a class="btn btn-success btn-xs" href="/proveedor">
+    Acceder
+    </a> -->
+                </div>
+              </li>
+
+                           <!--  <li class="borange">
+                                <div class="pull-left"><i class="fa fa-shopping-basket"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">{{vm.articulos2.length}}</span> Productos registrados
+                                    </br> <a class="btn btn-success btn-xs" href="/articulo">
+                  Acceder
+                </a>
+                                </div>
+                               
+                            </li> -->
+    <!--
+    -->
+            </ul>
+          </div>
+        </div>  
+      </div>
+     <tabset>
+        <tab heading="Listado de cuentas x cobrar">
+          <b>Desde:</b> {{vm.par.firstDay|date:"dd/MM/yyyy"}}<b></br>Hasta:</b> {{vm.par.lastDay|date:"dd/MM/yyyy"}}
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-search"></i>
+              </div>
+              <input type="text" class="form-control" placeholder="Buscar" ng-model="searchFish">
+            </div>      
+          </div>
+
+<!-- /.modal -->
+
+          <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+            <tr ng-repeat="cuenta in vm.contabilidad.cuentas | filter:searchFish">
+              <td data-title="'Nombe / Razón Social'" >{{cuenta.nombreRazon}}</td>
+              <td data-title="'Fecha'" >{{cuenta.createdAt | date :"dd / MM / yyyy - h:mm a"}}</td>
+              <td data-title="'Fecha de Vencimiento'" >{{cuenta.fechaVencimiento | date :"dd / MM / yyyy - h:mm a"}}</td>
+              <td data-title="'Monto'" >{{cuenta.monto}}</td>
+              
+              
+              <td>
+                <div class="pull-right">
+                  <div class="table-actions">
+
+                      <!--<a class="btn btn-default btn-xs" title="Ver detalles" href="/vent/{{vent.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>-->
+                     <!-- <a class="btn btn-default btn-xs"btn-xs title="Editar" href="/vent/{{vent.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>-->
+                     <!--  <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(vent)" item="vent">
+                        <span class="glyphicon glyphicon-remove-circle"></span> 
+                      </a> -->
+               <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+title="Registrar Devolución"
+        data-target="#myModal" ng-click="vm.cargarInfo($index)" >
+                    <i class="glyphicon fa  fa-cloud-upload"></i>
+                    </button> 
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </tab>
+      <tab heading="Graficos">
+  
+      </tab>
+</tabset>
+    </tab>
+    <tab heading="Cuentas x pagar">
+    </tab>
+    </tabset>
+  </div>
+</div>
+
+</section>

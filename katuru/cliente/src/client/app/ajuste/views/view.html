@@ -1,0 +1,30 @@
+<section class="mainbar" data-ng-init="vm.toViewAjuste()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Ajuste View
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.ajuste" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/ajuste/{{vm.ajuste.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.ajuste">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/ajuste">
+          <i class="glyphicon glyphicon-list"></i> List Ajustes
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

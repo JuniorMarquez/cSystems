@@ -1,0 +1,50 @@
+<section class="mainbar" data-ng-init="vm.toViewConfig()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Ajustes actuales
+    </div>
+    <div class="panel-body">
+<!--
+      <form novalidate>
+        <formly-form model="vm.config" fields="vm.formFields">
+        </formly-form>
+      </form>-->
+      <table><center>
+      <tr>
+     
+      <td><label>Precio de CCP: </label> </td>
+      <td><span class="label label-primary">{{vm.config.precioCcp}},00</span> Bs.F.</td>
+       </tr>
+       <tr>
+      <td><label>Equivalencia de CCP: </label> </td>
+      <td><span class="label label-primary">1:{{vm.config.eqCcp}}</span></td>
+      </tr>
+<tr><td>
+      <label>Tiempo maximo para cancelacion de creditos: </label></td> 
+      <td><span class="label label-primary"> {{vm.config.numeroMeses}}</span> meses</td>
+      </tr>
+      <tr><td>
+      <label>Tasa de interes credito interno: </label> </td>
+     <td> <span class="label label-primary"> {{vm.config.interesCreditoInterno}}</span> % anual</td></tr>
+      <tr><td>
+      <label>Tasa de interes credito externo: </label> </td><td>
+      <span class="label label-primary"> {{vm.config.interesCreditoExterno}}</span> % anual</td></tr></center>
+      </table>
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/config/{{vm.config.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+       <!-- <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.config">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/config">
+          <i class="glyphicon glyphicon-list"></i> List Configs
+        </a>-->
+      </div>
+
+    </div>
+  </div>
+
+</section>

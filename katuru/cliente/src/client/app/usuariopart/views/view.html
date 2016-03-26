@@ -1,0 +1,58 @@
+<section class="mainbar" data-ng-init="vm.toViewUsuariopart()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de usuario
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+       <!-- <formly-form model="vm.usuariopart" fields="vm.formFields">
+        </formly-form>-->
+
+
+        <div class="row" >
+    <div class="form-group">
+        <div class="col-md-4">
+        Nombres 
+            <input type="text"  class="form-control" name="nombres"   ng-model="vm.usuariopart.nombres" required="true">
+        </div>
+         <div class="col-md-4">
+        Apellidos 
+            <input type="text"  class="form-control" name="apellidos"   ng-model="vm.usuariopart.apellidos" required="true">
+        </div>
+      </div>
+</div>
+
+ <div class="row" >
+    <div class="form-group">
+         <div class="col-md-4">
+        Usuario 
+            <input type="text"  class="form-control" name="usuario"   ng-model="vm.usuariopart.user" required="true">
+          </div>
+            Tipo de usuario
+                 <div class="col-md-4">      
+            <input type="text"  class="form-control" name="tipoUsuario"   ng-model="vm.usuariopart.tipoUsuario" required="true">
+        </div>
+</div>        
+
+ 
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/ajuste">
+          <i class="glyphicon glyphicon-cog"></i> Ajustes
+        </a>
+       <!-- <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.usuariopart">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/usuariopart">
+          <i class="glyphicon glyphicon-list"></i> List Usuarioparts
+        </a>-->
+      </div>
+
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide { display: none!important; }
+    </style>
+    <title ng-bind="title">Katuru ERP</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <base href="/">
+<!--<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> --><!-- Include font first -->
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="/bower_components/ng-table/ng-table.css" />
+    <link rel="stylesheet" href="/bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css-->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/styles.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+<body>
+    <div>
+        <div ng-include="'app/layout/shell.html'"></div>
+        <div id="splash-page" ng-show="showSplash">
+            <div class="page-splash">
+                <div class="page-splash-message">
+                    Katuru ERP
+                </div>
+                <div class="progress progress-striped active page-progress-bar">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/ng-table/ng-table.js"></script>
+    <script src="/bower_components/api-check/dist/apiCheck.js"></script>
+    <script src="/bower_components/angular-formly/dist/formly.js"></script>
+    <script src="/bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
+    <script src="/bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="/bower_components/angular-auto-focus/angular-auto-focus.js"></script>
+    <script src="/bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
+    <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="/bower_components/angular-ui-date/src/date.js"></script>
+    <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js-->
+    <!-- inject:js -->
+    <script src="/src/client/app/app.module.js"></script>
+    <script src="/src/client/app/ajuste/ajuste.client.module.js"></script>
+    <script src="/src/client/app/articulo/articulo.client.module.js"></script>
+    <script src="/src/client/app/blocks/exception/exception.module.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.module.js"></script>
+    <script src="/src/client/app/blocks/router/router.module.js"></script>
+    <script src="/src/client/app/cate/cate.client.module.js"></script>
+    <script src="/src/client/app/cliente/cliente.client.module.js"></script>
+    <script src="/src/client/app/contabilidad/contabilidad.client.module.js"></script>
+    <script src="/src/client/app/core/core.module.js"></script>
+    <script src="/src/client/app/cuenta-por-cobrar/cuenta-por-cobrar.client.module.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+    <script src="/src/client/app/deposito/deposito.client.module.js"></script>
+    <script src="/src/client/app/entrada/entrada.client.module.js"></script>
+    <script src="/src/client/app/impuesto/impuesto.client.module.js"></script>
+    <script src="/src/client/app/ingreso/ingreso.client.module.js"></script>
+    <script src="/src/client/app/inventario/inventario.client.module.js"></script>
+    <script src="/src/client/app/layout/layout.module.js"></script>
+    <script src="/src/client/app/margen/margen.client.module.js"></script>
+    <script src="/src/client/app/movimiento/movimiento.client.module.js"></script>
+    <script src="/src/client/app/nota-debito/nota-debito.client.module.js"></script>
+    <script src="/src/client/app/proveedor/proveedor.client.module.js"></script>
+    <script src="/src/client/app/sucursal/sucursal.client.module.js"></script>
+    <script src="/src/client/app/usuariopart/usuariopart.client.module.js"></script>
+    <script src="/src/client/app/vent/vent.client.module.js"></script>
+    <script src="/src/client/app/widgets/widgets.module.js"></script>
+    <script src="/src/client/app/ajuste/config/ajuste.client.routes.js"></script>
+    <script src="/src/client/app/ajuste/controllers/ajuste.client.controller.js"></script>
+    <script src="/src/client/app/ajuste/services/ajuste.client.service.js"></script>
+    <script src="/src/client/app/ajuste/services/ajuste.form.client.service.js"></script>
+    <script src="/src/client/app/articulo/config/articulo.client.routes.js"></script>
+    <script src="/src/client/app/articulo/controllers/articulo.client.controller.js"></script>
+    <script src="/src/client/app/articulo/services/articulo.client.service.js"></script>
+    <script src="/src/client/app/articulo/services/articulo.form.client.service.js"></script>
+    <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/src/client/app/blocks/exception/exception.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.js"></script>
+    <script src="/src/client/app/blocks/router/router-helper.provider.js"></script>
+    <script src="/src/client/app/cate/config/cate.client.routes.js"></script>
+    <script src="/src/client/app/cate/controllers/cate.client.controller.js"></script>
+    <script src="/src/client/app/cate/services/cate.client.service.js"></script>
+    <script src="/src/client/app/cate/services/cate.form.client.service.js"></script>
+    <script src="/src/client/app/cliente/config/cliente.client.routes.js"></script>
+    <script src="/src/client/app/cliente/controllers/cliente.client.controller.js"></script>
+    <script src="/src/client/app/cliente/services/cliente.client.service.js"></script>
+    <script src="/src/client/app/cliente/services/cliente.form.client.service.js"></script>
+    <script src="/src/client/app/contabilidad/config/contabilidad.client.routes.js"></script>
+    <script src="/src/client/app/contabilidad/controllers/contabilidad.client.controller.js"></script>
+    <script src="/src/client/app/contabilidad/services/contabilidad.client.service.js"></script>
+    <script src="/src/client/app/contabilidad/services/contabilidad.form.client.service.js"></script>
+    <script src="/src/client/app/core/config.js"></script>
+    <script src="/src/client/app/core/constants.js"></script>
+    <script src="/src/client/app/core/core.route.js"></script>
+    <script src="/src/client/app/core/dataservice.js"></script>
+    <script src="/src/client/app/core/directives/ng-really-click.directive.js"></script>
+    <script src="/src/client/app/core/services/table.settings.service.js"></script>
+    <script src="/src/client/app/cuenta-por-cobrar/config/cuenta-por-cobrar.client.routes.js"></script>
+    <script src="/src/client/app/cuenta-por-cobrar/controllers/cuenta-por-cobrar.client.controller.js"></script>
+    <script src="/src/client/app/cuenta-por-cobrar/services/cuenta-por-cobrar.client.service.js"></script>
+    <script src="/src/client/app/cuenta-por-cobrar/services/cuenta-por-cobrar.form.client.service.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+    <script src="/src/client/app/deposito/config/deposito.client.routes.js"></script>
+    <script src="/src/client/app/deposito/controllers/deposito.client.controller.js"></script>
+    <script src="/src/client/app/deposito/services/deposito.client.service.js"></script>
+    <script src="/src/client/app/deposito/services/deposito.form.client.service.js"></script>
+    <script src="/src/client/app/deposito/services/servicioDatos.js"></script>
+    <script src="/src/client/app/entrada/config/entrada.client.routes.js"></script>
+    <script src="/src/client/app/entrada/controllers/entrada.client.controller.js"></script>
+    <script src="/src/client/app/entrada/services/entrada.client.service.js"></script>
+    <script src="/src/client/app/entrada/services/entrada.form.client.service.js"></script>
+    <script src="/src/client/app/impuesto/config/impuesto.client.routes.js"></script>
+    <script src="/src/client/app/impuesto/controllers/impuesto.client.controller.js"></script>
+    <script src="/src/client/app/impuesto/services/impuesto.client.service.js"></script>
+    <script src="/src/client/app/impuesto/services/impuesto.form.client.service.js"></script>
+    <script src="/src/client/app/ingreso/config/ingreso.client.routes.js"></script>
+    <script src="/src/client/app/ingreso/controllers/ingreso.client.controller.js"></script>
+    <script src="/src/client/app/ingreso/services/ingreso.client.service.js"></script>
+    <script src="/src/client/app/ingreso/services/ingreso.form.client.service.js"></script>
+    <script src="/src/client/app/inventario/config/inventario.client.routes.js"></script>
+    <script src="/src/client/app/inventario/controllers/inventario.client.controller.js"></script>
+    <script src="/src/client/app/inventario/services/inventario.client.service.js"></script>
+    <script src="/src/client/app/inventario/services/inventario.form.client.service.js"></script>
+    <script src="/src/client/app/layout/ht-sidebar.directive.js"></script>
+    <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
+    <script src="/src/client/app/layout/shell.controller.js"></script>
+    <script src="/src/client/app/layout/sidebar.controller.js"></script>
+    <script src="/src/client/app/margen/config/margen.client.routes.js"></script>
+    <script src="/src/client/app/margen/controllers/margen.client.controller.js"></script>
+    <script src="/src/client/app/margen/services/margen.client.service.js"></script>
+    <script src="/src/client/app/margen/services/margen.form.client.service.js"></script>
+    <script src="/src/client/app/movimiento/config/movimiento.client.routes.js"></script>
+    <script src="/src/client/app/movimiento/controllers/movimiento.client.controller.js"></script>
+    <script src="/src/client/app/movimiento/services/movimiento.client.service.js"></script>
+    <script src="/src/client/app/movimiento/services/movimiento.form.client.service.js"></script>
+    <script src="/src/client/app/nota-debito/config/nota-debito.client.routes.js"></script>
+    <script src="/src/client/app/nota-debito/controllers/nota-debito.client.controller.js"></script>
+    <script src="/src/client/app/nota-debito/services/nota-debito.client.service.js"></script>
+    <script src="/src/client/app/nota-debito/services/nota-debito.form.client.service.js"></script>
+    <script src="/src/client/app/proveedor/config/proveedor.client.routes.js"></script>
+    <script src="/src/client/app/proveedor/controllers/proveedor.client.controller.js"></script>
+    <script src="/src/client/app/proveedor/services/proveedor.client.service.js"></script>
+    <script src="/src/client/app/proveedor/services/proveedor.form.client.service.js"></script>
+    <script src="/src/client/app/sucursal/config/sucursal.client.routes.js"></script>
+    <script src="/src/client/app/sucursal/controllers/sucursal.client.controller.js"></script>
+    <script src="/src/client/app/sucursal/services/sucursal.client.service.js"></script>
+    <script src="/src/client/app/sucursal/services/sucursal.form.client.service.js"></script>
+    <script src="/src/client/app/usuariopart/config/usuariopart.client.routes.js"></script>
+    <script src="/src/client/app/usuariopart/controllers/usuariopart.client.controller.js"></script>
+    <script src="/src/client/app/usuariopart/services/usuariopart.client.service.js"></script>
+    <script src="/src/client/app/usuariopart/services/usuariopart.form.client.service.js"></script>
+    <script src="/src/client/app/vent/config/vent.client.routes.js"></script>
+    <script src="/src/client/app/vent/controllers/vent.client.controller.js"></script>
+    <script src="/src/client/app/vent/controllers/vent.client.controller2.js"></script>
+    <script src="/src/client/app/vent/services/vent.client.service.js"></script>
+    <script src="/src/client/app/vent/services/vent.form.client.service.js"></script>
+    <script src="/src/client/app/widgets/ht-img-person.directive.js"></script>
+    <script src="/src/client/app/widgets/ht-widget-header.directive.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</body>
+</html>

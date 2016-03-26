@@ -1,0 +1,99 @@
+<section class="mainbar" data-ng-init="vm.toViewProveedor()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles del proveedor
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+     <!--   <formly-form model="vm.proveedor" fields="vm.formFields">
+        </formly-form>
+-->
+<div class="row" >
+    <div class="form-group">
+        <div class="col-md-8">
+        Nombre / Razón Social *
+            <input type="text"  class="form-control" name="nombreRazon"   ng-model="vm.proveedor.nombreRazon" required="true">
+        </div>
+
+         <div class="col-md-3">
+         Cédula / Rif *
+            <input type="text"  class="form-control" name="cedulaRif"   ng-model="vm.proveedor.cedulaRif" required="true">
+        </div>
+    </div>  
+</div>
+<div class="row">
+    <div class="form-group">
+
+        <div class="col-md-8">
+            Direccion *
+            <textarea class="form-control" rows="2" name="direccion"   ng-model="vm.proveedor.direccion" required="true"></textarea>
+        
+      </div>
+ </div> 
+ </div> 
+
+<div class="row" >
+    <div class="form-group">
+        <div class="col-md-3">
+        Telefono 1
+            <input type="text"  class="form-control" name="tel1"   ng-model="vm.proveedor.tel1" >
+        </div>
+        <div class="col-md-3">
+        Telefono 2
+            <input type="text"  class="form-control" name="tel2"   ng-model="vm.proveedor.tel2" >
+        </div>
+       
+    </div>
+  </div>
+
+<div class="row" >
+    <div class="form-group">
+        <div class="col-md-4">
+        email
+            <input type="text"  class="form-control" name="email"   ng-model="vm.proveedor.email" >
+        </div>
+        <div class="col-md-4">
+        web
+            <input type="text"  class="form-control" name="web"   ng-model="vm.proveedor.web" >
+        </div>
+        <div class="col-md-3">
+        fax
+            <input type="text"  class="form-control" name="fax"   ng-model="vm.proveedor.fax" >
+        </div>
+
+        <div class="col-md-3">
+   <!-- IdE-->
+            <input type="hidden"  class="form-control" name="idE"  ng-model="vm.proveedor.idE" required="true">
+        </div>
+         <div class="col-md-3">
+  <!--  establecimiento-->
+            <input type="hidden"  class="form-control" name="establecimiento"  ng-model="vm.proveedor.establecimiento" required="true">
+        </div>
+  <div class="col-md-3">
+  <!--  idU-->
+            <input type="hidden"  class="form-control" name="idU"  ng-model="vm.proveedor.idU" required="true">
+        </div>
+    </div>
+  </div>
+
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/proveedor/{{vm.proveedor.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove()" item="vm.proveedor">
+          <i class="glyphicon glyphicon-remove-circle"></i> Borrar
+        </a>
+        <a class="btn btn-primary" href="/proveedor">
+          <i class="glyphicon glyphicon-list"></i> Listado de proveedores
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

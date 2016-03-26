@@ -1,0 +1,350 @@
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $("#myModal").on('shown.bs.modal', function(){
+/*document.getElementById('producto').focus();
+       /* $(this).find('#cantidad').focus();*/
+
+    });
+
+});
+
+</script>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Nueva Venta
+    </div>
+    <div class="panel-body">
+ 
+
+
+
+     <button class="btn btn-default" ng-click="vm.open()">First modal</button>
+
+
+
+
+      <form data-ng-submit="vm.create()" novalidate  >
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" 
+
+  data-target="#myModal" ng-click="vm.limpiarCampos()" >Agregar producto
+</button>
+     
+
+        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel"
+data-backdrop="static" data-keyboard="false"
+        >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"  tabindex="-1"  class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" tabindex="-1"  id="myModalLabel">Agregar producto</h4>
+      </div>
+      <div class="modal-body">
+    
+<!-- ========================================================== -->
+ 
+         <div class="row" >
+        <div class="form-group">
+
+         <div class="col-md-8">
+              Nombre del producto
+
+              <ui-select ng-model="vm.vent.item.producto" required="true"
+                 theme="select2" style="min-width: 350px;"
+                
+                reset-search-input="true"
+                
+                title="Seleccione un producto"  id="producto"   >
+                
+                <ui-select-match placeholder="Indique un producto...">{{$select.selected.producto.titulo}}</ui-select-match >
+                
+                <ui-select-choices repeat="entrada as entrada in vm.entradas2"
+
+                  refresh="vm.refreshEntradas($select.search)"
+                  refresh-delay="0">  
+                  <div ng-bind-html="entrada.producto.titulo | highlight: $select.search"></div>
+                  <small>
+        <b>Descripcion:</b> {{entrada.producto.descripcion}}
+       <!-- <b>Barcode: </b><span ng-bind-html="''+entrada.producto.barcode | highlight: $select.search"></span>-->
+         <b>Stock: </b><span ng-bind-html="''+entrada.cantidad | highlight: $select.search"></span>
+         <b>Precio: </b><span ng-bind-html="''+entrada.precioVenta | highlight: $select.search"></span>
+         <b>Fecha de entrada: </b><span ng-bind-html="''+entrada.createdAt | date : 'dd / MM / yyyy' | highlight: $select.search"></span>
+      </small><!--
+                  <span ng-bind="producto.titulo"></span>-->
+                </ui-select-choices>
+    
+              </ui-select>  
+                
+      </div>
+
+       <div class="col-md-2">
+             Cant.
+                <input type="number" class="form-control" 
+               ng-model="vm.vent.item.cantidad" 
+               id="cantidad" ng-change="vm.calculo()"  name="cantidad">
+             </div>  
+         </div>
+      </div>
+
+<div class="row" >
+    <div class="form-group">
+    <input type="hidden" class="form-control" 
+                  ng-model="vm.vent.item.producto.producto.descripcion" 
+                  id="titulo" >
+        
+        <input type="hidden" class="form-control" 
+                  ng-model="vm.vent.item.producto.cantidad" 
+                  id="titulo" >
+                  
+       
+       
+ 
+     </div>
+ </div>
+  <div class="row" >
+
+<div class="form-group">
+<div class="col-md-2">
+           Precio: 
+                 <input type="number" class="form-control" tabindex="1" 
+                  ng-model="vm.vent.item.producto.precioVenta" 
+                  id="precioVenta" ng-change="vm.calculo()">
+        </div>
+        
+          
+              
+                <input type="hidden" class="form-control"
+               ng-model="vm.vent.item.id" 
+               id="idEntrada" >
+        
+         <div class="col-md-2">
+              Impuesto.
+               <input type="number" class="form-control" tabindex="1"
+               ng-model="vm.vent.item.producto.impuesto" 
+               id="cantidad" readonly="true">
+         </div>
+       <div class="col-md-2">
+      Sub-Total
+<input type="number" class="form-control" tabindex="1"
+       ng-model="vm.vent.item.subtotal" 
+       id="total" readonly="true"
+       ></div>
+        <div class="col-md-2">
+      Total
+<input type="number" class="form-control" tabindex="1"
+       ng-model="vm.vent.item.total" 
+       id="total" readonly="true"
+       ></div>
+      </div>
+  </div>
+
+    
+
+<!-- ============================================================-->
+
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" tabindex="1" data-dismiss="modal">Cerrar</button>
+        <button  class="btn btn-success"   ng-click="vm.agregar()" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i>Aceptar</button>
+
+
+        <!--
+        <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Aceptar</button>-->
+              <!--
+        <button type="button" class="btn btn-primary">Aceptar</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+        <formly-form model="vm.vent" fields="vm.formFields" form="vm.form">
+        </formly-form>
+-->
+
+</div>
+  
+
+
+
+
+<!-- =================================================== -->
+
+
+
+<!-- =================================================== -->
+
+
+
+
+
+
+        <hr/>
+        <!--<table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="vent in vm.vent.col">
+              <td data-title="'Producto'" >{{vent.total}}</td>
+              
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/vent/{{vent.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/vent/{{vent.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(vent)" item="vent">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>-->
+      <div class="row" >
+        <div class="form-group">
+
+         <div class="col-md-8">
+              Nombre del producto
+
+              <ui-select ng-model="vm.vent.item.producto" required="true"
+                 theme="select2" style="min-width: 350px;"
+                
+                reset-search-input="true"
+                
+                title="Seleccione un producto"  id="producto"   >
+                
+                <ui-select-match placeholder="Indique un producto...">{{$select.selected.producto.titulo}}</ui-select-match >
+                
+                <ui-select-choices repeat="entrada as entrada in vm.entradas2"
+
+                  refresh="vm.refreshEntradas($select.search)"
+                  refresh-delay="0">  
+                  <div ng-bind-html="entrada.producto.titulo | highlight: $select.search"></div>
+                  <small>
+        <b>Descripcion:</b> {{entrada.producto.descripcion}}
+       <!-- <b>Barcode: </b><span ng-bind-html="''+entrada.producto.barcode | highlight: $select.search"></span>-->
+         <b>Stock: </b><span ng-bind-html="''+entrada.cantidad | highlight: $select.search"></span>
+         <b>Precio: </b><span ng-bind-html="''+entrada.precioVenta | highlight: $select.search"></span>
+         <b>Fecha de entrada: </b><span ng-bind-html="''+entrada.createdAt | date : 'dd / MM / yyyy' | highlight: $select.search"></span>
+      </small><!--
+                  <span ng-bind="producto.titulo"></span>-->
+                </ui-select-choices>
+    
+              </ui-select>  
+                
+      </div>
+
+       <div class="col-md-2">
+             Cant.
+                <input type="number" class="form-control" 
+               ng-model="vm.vent.item.cantidad" 
+               id="cantidad" ng-change="vm.calculo()"  name="cantidad">
+             </div>  
+         </div>
+      </div>
+
+<div class="row" >
+    <div class="form-group">
+    <input type="hidden" class="form-control" 
+                  ng-model="vm.vent.item.producto.producto.descripcion" 
+                  id="titulo" >
+        
+        <input type="hidden" class="form-control" 
+                  ng-model="vm.vent.item.producto.cantidad" 
+                  id="titulo" >
+                  
+       
+       
+ 
+     </div>
+ </div>
+  <div class="row" >
+
+<div class="form-group">
+<div class="col-md-2">
+           Precio: 
+                 <input type="number" class="form-control" tabindex="1" 
+                  ng-model="vm.vent.item.producto.precioVenta" 
+                  id="precioVenta" ng-change="vm.calculo()">
+        </div>
+        
+          
+              
+                <input type="hidden" class="form-control"
+               ng-model="vm.vent.item.id" 
+               id="idEntrada" >
+        
+         <div class="col-md-2">
+              Impuesto.
+               <input type="number" class="form-control" tabindex="1"
+               ng-model="vm.vent.item.producto.impuesto" 
+               id="cantidad" readonly="true">
+         </div>
+       <div class="col-md-2">
+      Sub-Total
+<input type="number" class="form-control" tabindex="1"
+       ng-model="vm.vent.item.subtotal" 
+       id="total" readonly="true"
+       ></div>
+        <div class="col-md-2">
+      Total
+<input type="number" class="form-control" tabindex="1"
+       ng-model="vm.vent.item.total" 
+       id="total" readonly="true"
+       ></div>
+      </div>
+  </div>
+
+
+      <div class="wrapper-table-vent-items" ng-if="vm.vent.items.length">
+          <table class="table table-striped table-condensed table-hover table-bordered">
+            <tr>
+              <th>Producto</th>
+              <th>Cant.</th>
+              <th>Precio</th>
+              <th>Subtotal</th>
+              <th>Impuesto</th>
+              <th>Total</th>
+            </tr>
+
+            <tr ng-repeat="item in vm.vent.items track by $index">
+              <td>{{ item.producto }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.precioVenta }}</td>
+              <td>{{ item.subtotal }}</td>
+              <td>{{ item.impuesto }}</td>
+              <td>{{ item.total }}</td>
+              <td><a class="btn btn-danger btn-xs" ng-click="vm.borrar($index)"><i class="glyphicon glyphicon-remove"></i></a></td>
+            </tr>
+
+          </table>
+          <hr/>
+          <h1>Total:</h1>
+  <h2>{{vm.vent.total}}</h2>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/vent">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,399 @@
+
+<!--
+
+
+<section class="mainbar" data-ng-init="vm.toViewSocio()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      OperacionesCuentaAhorro View
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.socio" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/operaciones-cuenta-ahorro/{{vm.socio.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Edit
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.socio">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/cuent/create">
+          <i class="glyphicon glyphicon-list"></i> List OperacionesCuentaAhorros
+        </a>
+        <a class="btn btn-primary"ng-click="vm.aperturar()"  href="/cuent/create" >
+          <i class="glyphicon glyphicon-list"></i> Aperturar
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>->>
+
+-->
+
+<section class="mainbar" data-ng-init="vm.toViewSocio()">
+
+  <div class="panel panel-primary">
+ 
+
+
+
+
+
+ <div class="panel-heading">
+     
+<i class="glyphicon glyphicon-user"></i> 
+
+
+      Socio 
+    </div>
+    <div class="pull-right">
+      
+<span class="label label-primary">
+  <i class="glyphicon glyphicon-briefcase"></i>  Saldo Cta. de Ahorro: <span class="label label-warning">{{vm.paises|sumByKey:'monto'}}</span>
+ <i class="fa fa-cc"></i>  Cant. de C.C.P <span class="label label-warning"> {{vm.operaciones |sumByKey2:'tipoOperacion':'cantidad'}}
+  </span></span>
+
+</div>
+</br>
+
+<div>
+
+
+<tabset >
+    <tab heading="Detalles de Socio"> 
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">  
+          <span class="label label-info">Información de Socio</span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <label>Nombres:</label> {{vm.socio.nombres}} {{vm.socio.apellidos}}
+
+
+       <label>
+         Cédula de Identidad:</label> {{vm.socio.nacionalidad}} - {{vm.socio.cedula}}
+       
+        <p>
+        <label>Grado de Instruccion</label>
+        {{vm.socio.gradoDeInstruccion}}
+        <label>Profesion:</label>
+        {{vm.socio.profesion}} 
+        <label>Ocupación</label>
+        {{vm.socio.ocupacion}}
+
+
+        
+        </p>
+        <p>
+        <label>Ingreso Mensual:</label>
+        {{vm.socio.ingresoMensual}} 
+        <label>Origen de Ingresos</label>
+        {{vm.socio.origenDeIngresos}}
+        </p>
+       
+      </div>
+    </div>
+
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+         <span class="label label-info">Datos Personales</span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        
+        <label>
+        Estado Civil: </label> {{vm.socio.estadoCivil}}
+        <p>
+           <label>Fecha de Nacimiento:</label>{{vm.socio.fechaDeNacimiento}}
+
+
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+         <span class="label label-info">Datos de Contacto</span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        
+
+
+        <label><i class="glyphicon glyphicon-home"></i>   Direccion:</label> {{vm.socio.direccion}}
+        </p>
+        <p>
+        <label><i class="glyphicon glyphicon-phone-alt"></i>  Telefono:</label>{{vm.socio.telefono}}
+        </p>
+        <p>
+        <label><i class="glyphicon glyphicon-envelope"></i>  Correo:</label>{{vm.socio.correo}}
+        </p>
+      </div>
+    </div>
+  </div> <div class="panel-body">
+ <div>
+        <a class="btn btn-success btn-xs" href="/socio/{{vm.socio.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger btn-xs" title="Remove" ng-really-message="Esta seguro ?" ng-really-click="vm.remove()" item="vm.socio">
+          <i class="glyphicon glyphicon-remove"></i> Borrar
+        </a>
+        <a class="btn btn-primary btn-xs" href="/socio">
+          <i class="glyphicon glyphicon-chevron-left"></i> Volver
+        </a>                                                                                            
+      
+         
+        </div>
+  </div>
+
+
+
+
+</div>
+
+
+ 
+
+<!-- ========================== -->
+
+
+
+
+
+</tab>
+    <tab heading="Cuenta de Ahorro">
+
+</p>
+
+    </br>
+     <div class="pull-right">
+<h1>
+<!--
+  <i class="glyphicon glyphicon-inbox"></i>  Saldo: Bs.F. {{vm.paises|sumByKey:'monto'}} </h1> 
+
+-->
+</div>
+      <p>
+        <a type="button" ng-click="vm.aperturar()"class="btn btn-success" href="/cuent/create">
+          <i class="glyphicon glyphicon-open"></i> Aperturar Cuenta de Ahorro
+        </a>
+        <!--
+        <a type="button" ng-click="vm.aperturar()"class="btn btn-success" href="/operaciones-cuenta-ahorro/create">
+          <i class="glyphicon glyphicon-open"></i> Registrar Operacion
+        </a>-->
+        </p>
+    </br>
+    <div>
+
+     <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="dato in vm.cuentasExistentes">
+              
+
+
+              <td data-title="'Numero de Cuenta'"><center>{{dato.numeroCuenta}}</center></td>
+               <td data-title="'Fecha de Apertura'"><center>{{dato.createdAt |date}}</center></td>
+                </br>
+              <td>
+              <center>
+                 <div class="table-actions">
+                 <a class="btn btn-default btn-xs" title="View" href="/cuent/{{dato.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                     
+                     <!--<a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Are you sure ?" ng-really-click="vm.remove(credito)" item="credito">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                      -->
+                  </div>
+                  </center>
+              </td>
+          </tr>
+      </table>
+ 
+</div>
+
+<!--
+     <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="pais in vm.paises">
+              <td data-title="'Tipo de Operacion'" ><center>{{pais.tipoOperacion}}</center></td>
+
+
+              <td data-title="'Monto'">{{pais.monto}}</td>
+
+
+              <td data-title="'Fecha'">{{pais.fecha}}</td>
+              <td>
+              <!-/-
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="View" href="/operaciones-cuenta-ahorro/{{pais.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Edit" href="/operaciones-cuenta-ahorro/{{pais.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(operacionesCuentaAhorro)" item="operacionesCuentaAhorro">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+                  -/->
+              </td>
+          </tr>
+      </table>
+ -->
+
+   
+  </tab>
+
+
+   <tab heading="C.C.P">
+
+</p>
+
+    </br>
+     <div class="pull-right">
+<h1>
+
+  <i class="fa fa-cc"></i>C.C.P. {{vm.operaciones|sumByKey2:'tipoOperacion':'cantidad'}} </h1> 
+
+
+</div>
+      <p>
+        <a type="button" ng-click="vm.compraCcp()"class="btn btn-success" href="/operaciones-ccp/create">
+          <i class="glyphicon glyphicon-open"></i> Registrar compra de C.C.P
+        </a>
+        
+        <a type="button" ng-click="vm.traspasoCcp()"class="btn btn-success" href="/operaciones-ccp/create2">
+          <i class="glyphicon glyphicon-open"></i> Registrar traspaso de C.C.P
+          
+        </a>
+        </p>
+    </br>
+
+    <div>
+
+     <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="dato in vm.operaciones">
+              <td data-title="'Monto'" ><center>Bs.F. {{dato.monto}},00</center></td>
+
+
+              <td data-title="'Cantidad'"><center>{{dato.cantidad}} u.</center></td>
+
+
+              <td data-title="'Tipo de Operacion'"><center>{{dato.tipoOperacion | toUpper}} </center></td>
+              <td>
+              <td data-title="'Precio de compra'">Bs.F.  {{dato.precioCcp}},00</td>
+              <td>
+              <td data-title="'Fecha'">{{dato.createdAt | date}}</td>
+              <td>
+              <!--
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="View" href="/operaciones-cuenta-ahorro/{{pais.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Edit" href="/operaciones-cuenta-ahorro/{{pais.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(operacionesCuentaAhorro)" item="operacionesCuentaAhorro">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+                  -->
+              </td>
+          </tr>
+      </table>
+ 
+</div>
+   
+  </tab>
+
+
+  <!-- ____________________________________  -->
+
+<tab heading="Creditos">
+</br>
+</p>
+<a type="button" ng-click="vm.aperturar()"class="btn btn-success" href="/credito/create2">
+          <i class="glyphicon glyphicon-open"></i> Nueva Solicitud de Credito
+        </a>
+
+    </br>
+     <div class="pull-right">
+<h1>
+
+
+  
+
+
+</div>
+      <p>
+       
+        
+        
+        </p>
+    </br>
+
+    <div>
+
+     <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="dato in vm.creditos">
+              
+
+
+              <td data-title="'Tipo de Credito'"><center>{{dato.tipoDeCredito}}</center></td>
+               <td data-title="'Monto'"><center>{{dato.monto}}</center></td>
+                </br>
+
+              
+              <td>
+              <center>
+                 <div class="table-actions">
+                 <a class="btn btn-default btn-xs" title="View" href="/credito/{{dato.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                     
+                     <!--<a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Are you sure ?" ng-really-click="vm.remove(credito)" item="credito">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                      -->
+                  </div>
+                  </center>
+              </td>
+          </tr>
+      </table>
+ 
+</div>
+   
+  </tab>
+
+     
+</tabset>
+
+     
+  
+</div>
+
+</section>

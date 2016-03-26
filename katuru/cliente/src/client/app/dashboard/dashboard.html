@@ -1,0 +1,109 @@
+<section id="dashboard-view" class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="today-datas">
+                        <li class="blightblue2">
+                            <div class="pull-left"><!-- <i class="fa fa-cart-arrow-down"></i> --></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold"><a type="button" class="btn btn-success" title="Venta rápida de producto" href="/vent/create2">
+          <i class="fa fa-cart-arrow-down"></i> <b></b>
+        </a><!-- </span> <b>Total de ingresos por ventas</b> -->
+                                </br><!--  <a class="btn btn-success btn-xs" href="/articulo">
+              Acceder
+            </a> -->
+                            </div>
+                           
+
+                       <!--  </li>
+                           <li class="borange">
+                            <div class="pull-left"><i class="fa fa-money"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">{{vm.calculosVent.montoVentasDia | number : 2}}</span> <b>{{vm.par.mensaje2}}</b>
+                                </br>
+                                <b> {{vm.par.mensaje2b}} Desde: {{vm.par.firstDay | date:"dd/MM/yyyy HH:mm"}} Hasta: {{vm.par.lastDay | date:"dd/MM/yyyy HH:mm"}}</b>
+                                                                 <a class="btn btn-success btn-xs" href="/articulo">
+              Acceder
+            </a>
+                            </div>
+                           
+                        </li> -->
+
+                        <li class="borange">
+                            <div class="pull-left">
+                                <i class="fa fa-shopping-basket">
+                                </i>
+                            </div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">
+                                {{vm.articulos2.length}}
+                                </span> 
+                                <b>Productos registrados</b>
+                                </br>
+                                <!--  <b>registrados</b>
+                                </br> --> 
+                                <a class="btn btn-success" href="/articulo">
+                                <b>  Ver listado</b>
+                                </a>
+                            </div>
+                        </li>
+<!--
+                        <li class="borange">
+                            <div class="pull-left"><i class="fa fa-envelope"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">{{vm.messageCount}}</span> Messages
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+-->
+                    </ul>
+                </div>
+            </div>
+            <!--
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget wviolet">
+                        <div ht-widget-header title="People"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Age</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.people">
+                                        <td>{{p.firstName}}</td>
+                                        <td>{{p.lastName}}</td>
+                                        <td>{{p.age}}</td>
+                                        <td>{{p.location}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget wgreen">
+                        <div ht-widget-header title="{{vm.news.title}}"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <small>{{vm.news.description}}</small>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </section>
+</section>

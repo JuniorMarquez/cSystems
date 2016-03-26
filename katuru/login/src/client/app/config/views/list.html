@@ -1,0 +1,42 @@
+<section class="mainbar">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Configuracion actual
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+        <!--<a type="button" class="btn btn-success" href="/config/create">
+          <i class="glyphicon glyphicon-open"></i> New Config
+        </a>-->
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="config in $data">
+              <td data-title="'identificador'">{{config.identificador}}</td>
+              <td data-title="'Precio CCP'" >{{config.precioCcp}}</td>
+              <td data-title="'Equivalencia de CCP'" >{{config.eqCcp}}</td>
+              <td data-title="'Numero de Meses'" >{{config.numeroMeses}}</td>
+              <td data-title="'Tasa de Interes Credito Interno'" >{{config.interesCreditoInterno}}</td>
+              <td data-title="'Tasa de Interes Credito Externo'" >{{config.interesCreditoExterno}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/config/{{config.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/config/{{config.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a><!--
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(config)" item="config">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>-->
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+</section>

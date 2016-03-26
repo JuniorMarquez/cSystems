@@ -1,0 +1,340 @@
+<section class="mainbar">
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker3').datetimepicker(
+                  { format: 'MM/DD/YYYY',
+                  locale: 'es'});   
+            });
+</script>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker4').datetimepicker(
+                  { format: 'MM/DD/YYYY',
+                  locale: 'es'});   
+            });
+</script>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Nueva nota de débito
+    </div>
+    <div class="panel-body">
+   
+
+
+    <div class="modal fade" id="myModal">
+<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title">Nueva nota de débito</h3>
+        </div>
+        <div class="modal-body">
+
+
+ <table class="tablaMax table table-striped  table-hover  table-bordered">
+           
+ <tr>
+              <td></td>
+              <td> </td>
+              
+              <td></td>
+              <td></td>
+             <td><div class="pull-right">Fecha. </div></td>
+              <td>{{vm.vent.createdAt |date : 'dd/MM/yy'}}</td>
+              
+              
+            </tr>
+     
+ <tr>
+              <td><div class="pull-right">Nombre / Razon Social:</div></td>
+              <td>{{vm.vent.cliente.nombreRazon}} </td>
+              
+             <td></td>
+              <td></td>
+              <td><div class="pull-right"># Factura. </div></td>
+              <td>{{vm.vent.numeroFactura}}</td>
+              
+            </tr>
+
+             <tr>
+             <td><div class="pull-right">C.I / Rif:</div></td>
+              <td>{{vm.vent.cliente.cedulaRif}} </td>
+              
+  
+              <td colspan="4">
+<div class="pull-right">
+Vendedor: {{vm.usuariopart.nombres}} </div></td>
+             
+            </tr>
+     
+            </tr>
+          </table>
+
+
+
+<table class="tablaMax table table-striped"border="0">
+  <tr>
+    <td>
+    <table class="tablaMax table table-striped table-condensed table-hover table-bordered ">
+           <tr>
+              <th colspan="4"><center><b>Vendidos</b></center></th>
+             
+              
+            </tr>
+            <tr>
+              <th>Producto</th>
+              <th>Cant.</th>
+             
+              <th>Total</th>
+              <td></td>
+            </tr>
+
+            <tr ng-repeat="item in vm.vent.items track by $index">
+              <td>{{ item.producto }}</td>
+              <td>{{ item.cantidad }}</td>
+              
+              <td>{{ item.total | number:2}}</td>
+             <td> <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" 
+title="Devolver producto"
+        data-target="#myModal2" ng-click="vm.devolver($index)" >
+        <i class="glyphicon glyphicon-arrow-right"></i>Devolver
+      </button></td>
+            </tr>
+
+          </table>
+     
+    </td>
+<td></td>
+
+    <td>
+
+
+     <table class="tablaMax table table-striped table-condensed table-hover table-bordered ">
+           <tr>
+              <th colspan="4"><center><b>Devueltos</b></center></th>
+             
+              
+            </tr>
+            <tr>
+            <td></td>
+              <th>Producto</th>
+              <th>Cant.</th>
+             
+              <th>Total</th>
+              
+              
+            </tr>
+
+            <tr ng-repeat="item in vm.vent.itemsDevueltos track by $index">
+              <td> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" 
+title="Deshacer"
+        data-target="#myModal2" ng-click="vm.deshacer($index)" >
+        <i class="glyphicon glyphicon-arrow-left"></i>Deshacer
+      </button></td>
+              <td class=>{{ item.producto }}</td>
+              <td>{{ item.cantidad }}</td>
+              
+              <td>{{ item.total | number:2}}</td>
+             
+            </tr>
+
+          </table>  
+
+<!-- &&&&&&&&&&&&&&&&&&&&&&&& -->
+
+
+    
+      
+    </td>
+
+  </tr>
+</table>
+
+
+
+     <!-- <h5 class="text-center">Vendido por: {{vm.usuariopart.nombres}}</h5>-->
+           
+
+
+
+           
+
+ <table class="tablaMax table table-striped table-condensed table-hover table-bordered ">
+            <tr>
+              <td><div class="pull-right">Sub-total</div></td>
+              <td>{{vm.vent.subtotal | number:2}} </td>
+             
+              
+            </tr>
+             <tr>
+              <td><div class="pull-right">Dscto. </div></td>
+              <td>{{vm.vent.dsctoGral | number:2}}</td>
+       
+             
+            </tr>
+            <tr>
+              <td><div class="pull-right">Total. </div></td>
+              <td>{{vm.vent.total | number:2}}</td>
+       
+             
+            </tr>
+
+          </table>
+<div class="row" id="identificadorNota" min="0" max="100" style="visibility:hidden;">
+  <div class="form-group">
+    Identificador de Nota de Débito (proporcionado por la maquina registradora)
+    <div class="col-md-3">
+      <input type="number" class="form-control" tabindex="-1" id="inputIdentificadorNota"
+       ng-model="vm.notaDebito.identificadorNota" ng-change="vm.activaBoton()"
+        
+       >
+    </div>
+   
+  </div>
+</div>
+          <!--
+ <table class="tablaMax table table-striped  table-hover  ">
+           
+
+           
+ <tr>
+              <td><div class="pull-right">Vendedor:</div></td>
+              <td>{{vm.usuariopart.nombres}} </td>
+             
+              
+            </tr>
+          </table>
+-->
+
+
+          <div class="form-group">
+           <!-- <input class="btn btn-warning btn-sm pull-right" value="Reset" type="button">
+
+
+-->
+            <div class="clearfix"></div>
+          </div>
+    </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default " data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-success" ng-click="vm.actualizarVenta()" id="botonRegistrar"data-dismiss="modal" style="visibility:hidden;">Registrar nota de débito</button>
+        </div>
+        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+
+  </div>
+
+
+
+<!-- 
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/contabilidad/create">
+          <i class="glyphicon glyphicon-open"></i> New Contabilidad
+        </a>
+      </div> -->
+<!-- 
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="contabilidad in $data">
+              <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{contabilidad.name}}</td>
+              <td data-title="'Address'" sortable="'address'" filter="{'address': 'text'}">{{contabilidad.address}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/contabilidad/{{contabilidad.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/contabilidad/{{contabilidad.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(contabilidad)" item="contabilidad">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table> -->
+      <div class="row">
+      <div class="form-group">
+     <div class="col-md-4">
+     <div class="pull-right">
+     <span class="glyphicon glyphicon-filter" ></span>
+ Filtrar
+   </div>
+     </div>
+     <div class="col-md-3">
+  <div class='input-group date' id='datetimepicker3' datetimepicker  ng-model="vm.vent.fechaInicio" ng-change="vm.filtrado3()" >
+    <input type='text' class="form-control" Placeholder="Desde">
+    <span class="input-group-addon" >
+        <span class="glyphicon glyphicon-calendar" ></span>
+    </span>
+  </div>
+</div>
+
+
+<div class="col-md-3">
+  <div class='input-group date' id='datetimepicker4' datetimepicker  ng-model="vm.vent.fechaFin" ng-change="vm.filtrado3()">
+    <input type='text' class="form-control" Placeholder="Hasta" >
+    <span class="input-group-addon" >
+        <span class="glyphicon glyphicon-calendar" ></span>
+    </span>
+  </div>
+</div>
+
+</div>
+</div>
+<tabset>
+
+
+
+<tab heading="Listado de ventas">
+<b>Desde:</b> {{vm.par.firstDay|date:"dd/MM/yyyy"}}<b></br>Hasta:</b> {{vm.par.lastDay|date:"dd/MM/yyyy"}}
+ <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Buscar" ng-model="searchFish">
+      </div>      
+    </div>
+
+<!-- /.modal -->
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="vent in vm.ventas5 | filter:searchFish">
+              <td data-title="'# Factura'" >{{vent.numeroFactura}}</td>
+              <td data-title="'Fecha'" >{{vent.createdAt | date}}</td>
+              <td data-title="'Cliente'" >{{vent.cliente.nombreRazon}}</td>
+              
+              
+              <td><div class="pull-right">
+                 <div class="table-actions">
+
+                      <!--<a class="btn btn-default btn-xs" title="Ver detalles" href="/vent/{{vent.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>-->
+                     <!-- <a class="btn btn-default btn-xs"btn-xs title="Editar" href="/vent/{{vent.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>-->
+                     <!--  <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(vent)" item="vent">
+                        <span class="glyphicon glyphicon-remove-circle"></span> 
+                      </a> -->
+                       <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+title="Registrar Devolución"
+        data-target="#myModal" ng-click="vm.cargarInfo($index)" >
+        <i class="glyphicon fa  fa-cloud-upload"></i>
+      </button>
+                  </div>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+</tab>
+
+
+</tabset>
+    
+  </div>
+  </div>
+
+</section>

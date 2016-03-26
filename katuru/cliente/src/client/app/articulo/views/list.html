@@ -1,0 +1,284 @@
+<section class="mainbar">
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker(
+                  { format: 'MM/DD/YYYY',
+                  locale: 'es'});   
+            });
+</script>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker(
+                  { format: 'MM/DD/YYYY',
+                  locale: 'es'});   
+            });
+</script>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Listado de productos
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/articulo/create">
+          <i class="glyphicon glyphicon-open"></i> Agregar producto
+        </a>
+       </div>
+
+ 
+<div class="modal fade" id="myModal">
+<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title">Detalles del producto</h3>
+        </div>
+        <div class="modal-body">
+ <table class="tablaMax table table-striped  table-hover  table-bordered">
+           
+ <tr>
+              <td colspan="4"> <h4>{{vm.articulo.titulo}}</h4></td>
+              
+             <td><b><div class="pull-right">Fecha de ingreso: </div></b></td>
+              <td>{{vm.articulo.createdAt |date : 'dd/MM/yy'}}</td>
+              
+              
+            </tr>
+     
+ <tr>
+              <td colspan="3"><b><div class="pull-right">Codigo: </b></div></td>
+             
+              
+             <td>{{vm.articulo.cod}}</td>
+             
+              <td><b><div class="pull-right">Codigo de barras: </div></b></td>
+              <td>{{vm.articulo.barcode}}</td>
+              
+            </tr>
+
+             <tr>
+             <td><b><div class="pull-right">Descripcion:</div></b></td>
+             
+              
+  
+              <td colspan="5">
+
+{{vm.articulo.descripcion}}</td>
+             
+            </tr>
+ <tr>
+              <td><b><div class="pull-right">Categoría:</div></b></td>
+              <td>{{vm.articulo.categoria.descripcion}}</td>
+              <td><b><div class="pull-right">Stock Min:</div></td>
+              <td>{{vm.articulo.stockMinimo}}</td>
+              <td><b><div class="pull-right">Existencia:</div></b></td>
+              <td>{{vm.articulo.existencia}}</td>
+            </tr>
+
+
+
+
+      <tr>
+             <td colspan="2"><b><div class="pull-right">Proveedor principal:</div></b></td>
+             
+              
+  
+              <td colspan="4">
+
+{{vm.articulo.proveedor.nombreRazon}}</td>
+             
+            </tr>
+
+            <tr>
+              <td><b>Serial</b></td>
+              <td><b>Marca</b></td>
+              <td><b>Modelo</b></td>
+              <td><b>Presentación</b></b></b></td>
+              <td><b>Dimensiones</b></b></td>
+              <td><b>Peso</b></td>
+            </tr>
+            <tr>
+              <td>{{vm.articulo.serial}}</td>
+              <td>{{vm.articulo.marca}}</td>
+              <td>{{vm.articulo.modelo}}</td>
+              <td>{{vm.articulo.presentacion}}</td>
+              <td>{{vm.articulo.dimensiones}}</td>
+              <td>{{vm.articulo.peso}}</td>
+            </tr>
+          </table>
+
+
+
+     <!-- <h5 class="text-center">Vendido por: {{vm.usuariopart.nombres}}</h5>-->
+          <!--  <table class="tablaMax table table-striped table-condensed table-hover table-bordered ">
+            <tr>
+              <th>Producto</th>
+              <th>Cant.</th>
+              <th>Precio</th>
+              <th>Imp.</th>
+              <th>Sub total</th>
+              <th>Dscto.</th>
+              <th>Total</th>
+              
+            </tr>
+
+            <tr ng-repeat="item in vm.vent.items track by $index">
+              <td>{{ item.producto }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.precioVenta }}</td>
+              <td>{{ item.impuesto }}</td>
+              <td>{{ item.subtotal | number:2}}</td>
+              <td>{{ item.descuento | number:2}}</td>
+              <td>{{ item.total | number:2}}</td>
+             
+            </tr>
+
+          </table> -->
+
+ <table class="tablaMax table table-striped table-condensed table-hover table-bordered ">
+            <tr>
+              <td colspan="4"><center><h2>Existencia</h2></center></td>
+             
+              
+            </tr>
+            <tr>
+              <th>Fecha de entrada</th>
+              <th>Cant. en existencia</th>
+              <th>Precio de costo</th>
+              <th>Precio de venta</th>
+               <th>Proveedor</th>
+             
+              
+            </tr>
+
+            <tr ng-repeat="entrada in vm.entradas5 track by $index">
+              <td>{{ entrada.createdAt | date }}</td>
+              <td>{{ entrada.cantidad }}</td>
+              <td>{{ entrada.precioCosto }}</td>
+              <td>{{ entrada.precioVenta }}</td> 
+               <td>{{ entrada.proveedor.nombreRazon }}</td>               
+              
+            </tr>
+
+          </table>
+
+          <!--
+ <table class="tablaMax table table-striped  table-hover  ">
+           
+
+           
+ <tr>
+              <td><div class="pull-right">Vendedor:</div></td>
+              <td>{{vm.usuariopart.nombres}} </td>
+             
+              
+            </tr>
+          </table>
+-->
+
+
+          <div class="form-group">
+           <!-- <input class="btn btn-warning btn-sm pull-right" value="Reset" type="button">
+
+
+-->
+            <div class="clearfix"></div>
+          </div>
+    </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default " data-dismiss="modal">Cerrar</button>
+          <!-- <button type="button" class="btn btn-primary">Save Changes</button> -->
+        </div>
+        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
+<!-- CAMPOS DE FILTRO -->
+       <!--    <div class="col-md-7">
+                <div class='input-group date' id='datetimepicker1' datetimepicker  ng-model="vm.articulo.fechaInicio" ng-change="vm.filtrado()" >
+
+                    <input type='text' class="form-control" >
+                    <span class="input-group-addon" >
+                        <span class="glyphicon glyphicon-calendar" ></span>
+                    </span>
+                </div>
+            </div>
+               <div class="col-md-7">
+                <div class='input-group date' id='datetimepicker2' datetimepicker  ng-model="vm.articulo.fechaFin" ng-change="vm.filtrado()">
+
+                    <input type='text' class="form-control" >
+                    <span class="input-group-addon" >
+                        <span class="glyphicon glyphicon-calendar" ></span>
+                    </span>
+                </div>
+            </div>
+ -->
+<!-- PARA DESOMENTAR CAMBIAR EN EL ng-repeat vm.articulos2 -->
+
+<!-- FIN CAMPOS DE FILTRO -->
+
+      <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Buscar" ng-model="searchFish">
+      </div>      
+    </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="articulo in vm.articulos2 | filter:searchFish">
+          <td data-title="'COD'" >{{articulo.cod}}</td>
+              <td data-title="'Titulo'" >{{articulo.titulo}}</td>
+              <td data-title="'Codigo de barras'" >{{articulo.barcode}}</td>
+              <td data-title="'Fecha de ingreso'" >{{articulo.createdAt | date: "dd/MM/yyyy"}}</td>
+              <td data-title="'Proveedor Principal'" >{{articulo.proveedor.nombreRazon}}</td>
+              <td>
+
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="Ver detalles" href="/articulo/{{articulo.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Editar" href="/articulo/{{articulo.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(articulo)" item="articulo">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                       <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+title="Vista previa"
+        data-target="#myModal" ng-click="vm.cargarInfo($index)" >
+        <i class="glyphicon glyphicon-eye-open"></i>
+      </button>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+
+     <!-- 
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="articulo in vm.articulos2">
+              <td data-title="'Titulo'" sortable="'titulo'" filter="{ 'titulo': 'text' }">{{articulo.titulo}}</td>
+              <td data-title="'Codigo de barras'" sortable="'barcode'" filter="{'barcode': 'text'}">{{articulo.barcode}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="Ver detalles" href="/articulo/{{articulo.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Editar" href="/articulo/{{articulo.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Are you sure ?" ng-really-click="vm.remove(articulo)" item="articulo">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>-->
+
+    </div>
+  </div>
+
+</section>

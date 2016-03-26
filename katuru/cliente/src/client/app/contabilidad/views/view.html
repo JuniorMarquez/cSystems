@@ -1,0 +1,30 @@
+<section class="mainbar" data-ng-init="vm.toViewContabilidad()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Contabilidad View
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.contabilidad" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/contabilidad/{{vm.contabilidad.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Edit
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.contabilidad">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/contabilidad">
+          <i class="glyphicon glyphicon-list"></i> List Contabilidads
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

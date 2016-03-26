@@ -1,0 +1,370 @@
+<style type="text/css">
+  form.tab-form-demo .tab-pane {
+    margin: 20px 20px;
+  }
+</style>    <section class="mainbar" data-ng-init="vm.setFormFields()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Nuevo Producto
+    </div>
+    <div class="panel-body">
+
+      <form name="vm.form"  data-ng-submit="vm.create()" novalidate class="tab-form-demo" >    
+      <tabset>
+      <tab heading="Datos obligatorios">  
+       
+<div class="row" >
+    <div class="form-group">
+        <div class="col-md-8">
+        Titulo *
+            <input type="text"  class="form-control" name="titulo"   ng-model="vm.articulo.titulo" required="true">
+        </div>
+
+         <div class="col-md-3">
+         Codigo de Barras *
+            <input type="text"  class="form-control" name="barcode"   ng-model="vm.articulo.barcode" required="true">
+        </div>
+    </div>  
+</div>
+
+<div class="row">
+    <div class="form-group">
+
+        <div class="col-md-8">
+            Descripcion *
+            <textarea class="form-control" rows="2" name="descripcion"   ng-model="vm.articulo.descripcion" required="true"></textarea>
+        </div>
+         <div class="col-md-2">
+              Categoría *
+              <select  id="categoria" ng-model="vm.articulo.categoria" ng-options="categoria.descripcion as categoria.descripcion for categoria in vm.categorias2"></select>
+          </div>  
+      </div>
+ </div> 
+<div class="row">
+    <div class="form-group">
+               <div class="col-md-2">
+              Stock.min *
+              <input type="number"  min="1"class="form-control" name="stockMinimo"  ng-model="vm.articulo.stockMinimo" required="true">
+              </div>
+               <div class="col-md-2">
+              Existencia *
+              <input type="number"  min="1"class="form-control" name="existencia"  ng-model="vm.articulo.existencia" required="true">
+              </div>
+              <div class="col-md-2">
+                Precio de costo *
+                <input type="number"  min="0"class="form-control" name="precioCosto"  ng-model="vm.articulo.precioCosto" required="true">
+            </div>
+            <div class="col-md-2">
+                Precio base *
+                <input type="number"  min="0"class="form-control" name="precioBase"  ng-model="vm.articulo.precioBase" required="true">
+            </div> 
+             
+               
+    </div>  
+</div>
+<div class="row">
+    <div class="form-group">
+ <div class="col-md-6">
+              Proveedor principal*
+
+              <ui-select ng-model="vm.articulo.proveedor" required="true"
+                theme="bootstrap"
+                class="select-proveedor"
+                title="Seleccione un proveedor" id="proveedor">
+                
+                <ui-select-match placeholder="Indique un proveedor...">{{$select.selected.nombreRazon}}</ui-select-match >
+                
+                <ui-select-choices repeat="proveedor.descripcion as proveedor in vm.proveedors"
+
+                  refresh="vm.refreshProveedors($select.search)"
+                  refresh-delay="0">  
+                 <!-- <div ng-bind-html="proveedor.nombreRazon | highlight: $select.search"></div>
+                  -->
+                  <span ng-bind="proveedor.nombreRazon"></span>
+                </ui-select-choices>
+    
+              </ui-select>  
+             </div>  
+</div>
+</div>
+<!--
+<button ng-click="openModal()">Click Me</button>
+-->
+<!--
+
+<a ui-sref="home.modal({path: 'create'})" class="btn btn-default" ng-click="openModal()">Login</a>
+
+
+-->
+
+
+
+
+
+
+
+
+            <!--
+<a ui-sref="articulomodal()" class="btn btn-default" ng-click="openModal()" data-toggle="modal" href="#/modal">+</a>
+
+ <a href="#/articulomodal">+C</a>
+
+ <script type="text/ng-template" id="modalContainer">
+        <div ng-controller="CateController" > </div>
+    </script>
+ <div ng-view></div>
+
+      -->
+
+<!--
+
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" 
+href="cate/create.html"
+  data-target="#myModal">
+</button>
+     
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+            <!--
+            <input type="text"  class="form-control" name="categoria"  ng-model="vm.articulo.categoria" required="true">
+       -->
+       <!--========================================================
+<div class="row">
+    <div class="form-group">
+            <div class="col-md-2">
+                Precio de costo
+                <input type="text"  class="form-control" name="precioCosto"  ng-model="vm.articulo.precioCosto" required="true">
+            </div>
+            <div class="col-md-2">
+                Precio base
+                <input type="text"  class="form-control" name="precioBase"  ng-model="vm.articulo.precioBase" required="true">
+            </div>
+            <div class="col-md-8">
+                          Proveedor:
+                <div class="formly-field formly-field-input" >
+                    <div class="form-group">
+                          <div>
+                              <ui-select ng-model="vm.articulo.proveedor"
+                                theme="bootstrap"
+                                class="select-proveedor"
+                                title="Seleccione un proveedor" id="proveedor">
+                                
+                                <ui-select-match placeholder="Indique un proveedor...">{{$select.selected.nombreRazon}}</ui-select-match >
+                                
+                                <ui-select-choices repeat="proveedor in vm.proveedors"
+
+                                  refresh="vm.refreshProveedors($select.search)"
+                                  refresh-delay="0">    -->
+                                 <!-- <div ng-bind-html="proveedor.nombreRazon | highlight: $select.search"></div>
+                                  -->
+<!--                                  <span ng-bind="proveedor.nombreRazon"></span>
+                                </ui-select-choices>
+                    
+                              </ui-select>    -->
+                           <!-- <p>Selected: {{vm.articulo.proveedor.nombreRazon}}</p> 
+                          -->
+                   <!--       </div>
+                    </div>
+                </div> 
+                 <div class="col-md-8">
+                    identificador de Proveedor
+                    <input type="text" id="idProveedor" class="form-control" name="precioBase"  ng-model="vm.articulo.proveedor.id" required="true">
+                </div>         
+            </div> 
+    </div>
+</div>
+
+
+       ============================================================-->
+<hr/>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/articulo">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+</tab>
+
+
+<tab heading="Datos de ubicacion">
+
+<div class="row">
+    <div class="form-group">
+
+       
+         <div class="col-md-2">
+              Deposito 
+              <select  id="deposito" ng-model="vm.articulo.deposito" ng-options="deposito.descripcion as deposito.descripcion for deposito in vm.depositos2"></select>
+          </div> 
+          <div class="col-md-2">
+              Sucursal 
+              <select  id="sucursal" ng-model="vm.articulo.sucursal" ng-options="sucursal.descripcion as sucursal.descripcion for sucursal in vm.sucursales2"></select>
+          </div> 
+    </div> </div>
+    <div class="row">
+    <div class="form-group">
+           <div class="col-md-3">
+                Ubicacion física
+                <input type="text"  min="0"class="form-control" name="ubicacionFisica"  ng-model="vm.articulo.ubicacionFisica" >
+            </div>
+      </div>
+ </div> 
+
+
+
+
+<hr/>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/articulo">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+</tab>
+<tab heading="Datos opcionales">
+
+              
+<div class="row">
+    <div class="form-group">
+           
+             <div class="col-md-3">
+
+                <input type="text"  class="form-control" name="serial"   ng-model="vm.articulo.serial" placeholder="Serial">
+            </div>
+             <div class="col-md-2">
+         
+                <input type="text"  class="form-control" name="marca"   ng-model="vm.articulo.marca" placeholder="Marca">
+            </div>
+
+            <div class="col-md-2">
+          
+                <input type="text"  class="form-control" name="modelo"  ng-model="vm.articulo.modelo" placeholder="Modelo">
+            </div>
+            <div class="col-md-2">
+           
+                <input type="text"  class="form-control" name="presentacion"  ng-model="vm.articulo.presentacion" placeholder="Presentacion" >
+            </div>  
+             <div class="col-md-2">
+
+                <input type="text"  class="form-control" name="dimensiones"  ng-model="vm.articulo.dimensiones" placeholder="Dimensiones">
+            </div>
+            <div class="col-md-2">
+            Peso
+                <input type="number"  min="1"class="form-control" name="peso"  ng-model="vm.articulo.peso">
+            </div>             
+      </div> 
+</div>
+
+
+
+                <!--
+                <p>Selected: {{$select.search}}</p> -->
+          
+        
+<!--
+
+
+
+              <select  id="proveedor" ng-model="vm.test.proveedor" ng-options="proveedor.id as proveedor.nombreRazon for proveedor in vm.proveedores2"></select>
+
+               -->    
+          
+   
+
+        <!--=============================================== -->
+
+
+
+
+        <!--============================================ -->
+
+
+
+<div class="row">
+    <div class="form-group">
+
+        <div class="col-md-3">
+   <!-- IdE-->
+            <input type="hidden"  class="form-control" name="idE"  ng-model="vm.articulo.idE" required="true">
+        </div>
+         <div class="col-md-3">
+  <!--  IdSucursal-->
+            <input type="hidden"  class="form-control" name="idSucursal"  ng-model="vm.articulo.idSucursal" required="true">
+        </div>
+         <div class="col-md-3">
+  <!--  IdU-->
+            <input type="hidden"  class="form-control" name="idU"  ng-model="vm.articulo.idU" required="true">
+        </div>
+        <div class="col-md-3">
+         <input type="hidden"  class="form-control" name="establecimiento"  ng-model="vm.articulo.establecimiento" required="true">
+        </div><!--establecimiento-->
+
+
+  </div> 
+</div>
+<hr/>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/articulo">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+</tab>
+
+<!--
+      <formly-form model="vm.articulo" fields="vm.formFields" form="vm.form">
+        </formly-form>
+
+-->
+
+         
+
+
+          </tabset>
+       
+      </form>
+
+    
+  </div>
+
+</section>

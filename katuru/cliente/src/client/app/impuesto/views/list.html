@@ -1,0 +1,38 @@
+<section class="mainbar">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Impuesto List
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/impuesto/create">
+          <i class="glyphicon glyphicon-open"></i> New Impuesto
+        </a>
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="impuesto in $data">
+              <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{impuesto.name}}</td>
+              <td data-title="'Address'" sortable="'address'" filter="{'address': 'text'}">{{impuesto.address}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/impuesto/{{impuesto.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/impuesto/{{impuesto.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(impuesto)" item="impuesto">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+</section>

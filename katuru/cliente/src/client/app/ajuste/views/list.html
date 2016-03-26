@@ -1,0 +1,183 @@
+<style type="text/css">
+  form.tab-form-demo .tab-pane {
+    margin: 20px 20px;
+  }
+</style>
+<section class="mainbar"  >
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Ajustes
+    </div>
+    <div class="panel-body">
+<!--
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/ajuste/create">
+          <i class="glyphicon glyphicon-open"></i> New Ajuste
+        </a>
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="ajuste in $data">
+              <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{ajuste.name}}</td>
+              <td data-title="'Address'" sortable="'address'" filter="{'address': 'text'}">{{ajuste.address}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/ajuste/{{ajuste.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/ajuste/{{ajuste.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(ajuste)" item="ajuste">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+
+    -->
+
+  <tabset>
+      <tab heading="Ajustes de App">  
+      <br/>
+       <tabset>
+      <tab heading="Categorias">  
+      
+  <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/cate/create">
+          <i class="glyphicon glyphicon-open"></i> Agregar Categoria
+        </a>
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="cate in vm.categorias2">
+             <td data-title="'Descripcion'" >{{cate.descripcion}}</td>
+         <!--     <td data-title="'Otro'" sortable="'V'" filter="{'otro': 'text'}">{{cate.otro}}</td>-->
+              <td>
+                 <div class="table-actions">
+                     <!-- <a class="btn btn-default" title="View" href="/cate/{{cate.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a> -->
+                      <a class="btn btn-default btn-xs" title="Edit" href="/cate/{{cate.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Remove" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.removeCate(cate)" item="cate">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+</tab>
+
+
+      <tab heading="Depositos">  
+      
+
+
+
+
+  <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/deposito/create">
+          <i class="glyphicon glyphicon-open"></i> Agregar Depósito
+        </a>
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="deposito in vm.depositos2">
+            <!--  <td data-title="'Identificador de Establecimiento'" sortable="'idE'" filter="{ 'idE': 'text' }">{{deposito.idE}}</td> -->
+              <td data-title="'Descripcion'" >{{deposito.descripcion}}</td>
+              <td>
+                 <div class="table-actions">
+                     <!-- <a class="btn btn-default btn-xs" title="Ver detalles" href="/deposito/{{deposito.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>-->
+                      <a class="btn btn-default btn-xs" title="Editar" href="/deposito/{{deposito.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove2(deposito)" item="deposito">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+</tab>
+
+<tab heading="Sucursales">
+     
+ <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/sucursal/create">
+          <i class="glyphicon glyphicon-open"></i> Agregar Sucursal
+        </a>
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="sucursal in vm.sucursales2">
+             <!-- <td data-title="'Identificador de Establecimiento'" >{{sucursal.idE}}</td>-->
+              <td data-title="'Descripcion'">{{sucursal.descripcion}}</td>
+              <td>
+                 <div class="table-actions">
+                      <!--<a class="btn btn-default btn-xs" title="Ver detalles" href="/sucursal/{{sucursal.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>-->
+                      <a class="btn btn-default btn-xs" title="Editar" href="/sucursal/{{sucursal.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(sucursal)" item="sucursal">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+</tab>
+</tabset>
+
+      </tab>
+      <tab heading="Ajustes de cuenta">
+      <br/>
+      
+<tabset>
+      <tab heading="Usuarios">
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/usuariopart/create">
+          <i class="glyphicon glyphicon-open"></i> Agregar usuario
+        </a>
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="usuariopart in vm.usuarios2">
+              <td data-title="'Nombres'" >{{usuariopart.nombres}}</td>
+
+              <td data-title="'Apellidos'" >{{usuariopart.apellidos}}</td>
+              <td data-title="'Tipo de usuario'" >{{usuariopart.tipoUsuario}}</td>
+              <td data-title="'Usuario'" >{{usuariopart.user}}</td>
+              <td>
+                 <div class="table-actions">
+                    <!--  <a class="btn btn-default" title="View" href="/usuariopart/{{usuariopart.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>-->
+                      <a class="btn btn-default btn-xs" title="Editar" href="/usuariopart/{{usuariopart.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(usuariopart)" item="usuariopart">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+      </tab>
+</tabset>
+</tab>
+      </tabset>
+
+  </div>
+
+</section>

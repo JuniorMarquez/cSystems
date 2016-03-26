@@ -1,0 +1,50 @@
+<section class="mainbar" data-ng-init="vm.toEditDeposito()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Editar información del depósito 
+    </div>
+    <div class="panel-body">
+
+      <form data-ng-submit="vm.update()" novalidate>
+
+<!--        <formly-form model="vm.deposito" fields="vm.formFields" form="vm.form">
+        </formly-form>
+-->
+ <div class="row" >
+    <div class="form-group">
+        <div class="col-md-4">
+        Descripcion 
+            <input type="text"  class="form-control" name="titulo"   ng-model="vm.deposito.descripcion" required="true">
+        </div>
+         <div class="col-md-3">
+   <!-- IdE-->
+            <input type="hidden"  class="form-control" name="idE"  ng-model="vm.deposito.idE" required="true">
+        </div>
+         <div class="col-md-3">
+  <!--  IdU-->
+            <input type="hidden"  class="form-control" name="idU"  ng-model="vm.deposito.idU" required="true">
+        </div>
+        </div>
+  </div>
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/ajuste">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,40 @@
+<section class="mainbar" data-ng-init="vm.toViewCate()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de Categoria
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+      <!--
+        <formly-form model="vm.cate" fields="vm.formFields">
+        </formly-form>
+      -->
+      <div class="row" >
+    <div class="form-group">
+        <div class="col-md-4">
+        Descripcion 
+            <input type="text"  class="form-control" name="descripcion"   ng-model="vm.cate.descripcion" required="true" readonly="true">
+        </div>
+        </div>
+        </div>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/ajuste">
+          <i class="glyphicon glyphicon-cog"></i> Ajustes
+        </a>
+      <!--  <a class="btn btn-danger" title="Remove" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove()" item="vm.cate">
+          <i class="glyphicon glyphicon-remove-circle"></i> Borrar
+        </a>-->
+        <!--<a class="btn btn-primary" href="/cate">
+          <i class="glyphicon glyphicon-list"></i> List Cates
+        </a>-->
+      </div>
+
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,38 @@
+<section class="mainbar" data-ng-init="vm.toViewDeposito()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de depósito 
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+      <!--  <formly-form model="vm.deposito" fields="vm.formFields">
+        </formly-form>-->
+
+        <div class="row" >
+    <div class="form-group">
+        <div class="col-md-4">
+        Descripcion 
+            <input type="text"  class="form-control" name="titulo"   ng-model="vm.deposito.descripcion" required="true">
+        </div>
+        </div></div>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/ajuste">
+          <i class="glyphicon glyphicon-cog"></i> Ajustes
+        </a>
+      <!--  <a class="btn btn-danger" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove()" item="vm.deposito">
+          <i class="glyphicon glyphicon-remove-circle"></i> Borrar
+        </a>-->
+       <!-- <a class="btn btn-primary" href="/deposito">
+          <i class="glyphicon glyphicon-list"></i> Listado de depósitos
+        </a>-->
+      </div>
+
+    </div>
+  </div>
+
+</section>

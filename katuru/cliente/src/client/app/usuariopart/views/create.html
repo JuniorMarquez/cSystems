@@ -1,0 +1,85 @@
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Nuevo usuario
+    </div>
+    <div class="panel-body">
+
+      <form data-ng-submit="vm.create()" novalidate>
+<!--
+        <formly-form model="vm.usuariopart" fields="vm.formFields" form="vm.form">
+        </formly-form>
+-->
+
+ <div class="row" >
+    <div class="form-group">
+        <div class="col-md-4">
+        Nombres 
+            <input type="text"  class="form-control" name="nombres"   ng-model="vm.usuariopart.nombres" required="true">
+        </div>
+         <div class="col-md-4">
+        Apellidos 
+            <input type="text"  class="form-control" name="apellidos"   ng-model="vm.usuariopart.apellidos" required="true">
+        </div>
+      </div>
+</div>
+
+ <div class="row" >
+    <div class="form-group">
+         <div class="col-md-4">
+        Usuario 
+            <input type="text"  class="form-control" name="usuario"   ng-model="vm.usuariopart.user" required="true">
+          </div>
+             <div class="col-md-4">
+        Contraseña 
+            <input type="text"  class="form-control" name="pass"   ng-model="vm.usuariopart.pass" required="true">
+        </div>
+  </div>
+</div>        
+
+ <div class="row" >
+    <div class="form-group">
+         <div class="col-md-4">
+         Tipo de usuario
+                  <select class="form-control" name="tipoUsuario"   ng-model="vm.usuariopart.tipoUsuario" required="true">
+                    <option value="1">Administrador</option>
+                    <option value="2">Vendedor</option>       
+                  </select>
+        </div>
+ 
+
+        <div class="col-md-3">
+   <!-- IdE-->
+            <input type="hidden"  class="form-control" name="idE"  ng-model="vm.usuariopart.idE" required="true">
+        </div>
+         <div class="col-md-3">
+  <!--  IdU-->
+            <input type="hidden"  class="form-control" name="idSucursal"  ng-model="vm.usuariopart.idSucursal" required="true">
+        </div>
+        <!--establecimiento-->
+         <input type="hidden"  class="form-control" name="establecimiento"  ng-model="vm.usuariopart.establecimiento" required="true">
+        </div>
+    </div>
+  </div>
+  
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/ajuste">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,158 @@
+<section class="mainbar" data-ng-init="vm.toEditEntrada()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Editar entrada de producto 
+    </div>
+    <div class="panel-body">
+
+      <form data-ng-submit="vm.update()" novalidate>
+<!--
+        <formly-form model="vm.entrada" fields="vm.formFields" form="vm.form">
+        </formly-form>
+-->
+
+<div class="row">
+      <div class="form-group">
+         <div class="col-md-12">
+              Producto
+
+              <ui-select ng-model="vm.entrada.producto" required="true"
+                theme="bootstrap"
+                class="select-producto"
+                title="Seleccione un producto" id="producto">
+                
+                <ui-select-match placeholder="Indique un producto...">{{$select.selected.titulo}}</ui-select-match >
+                
+                <ui-select-choices repeat="producto as producto in vm.productos"
+
+                  refresh="vm.refreshProductos($select.search)"
+                  refresh-delay="0">  
+                  <div ng-bind-html="producto.titulo | highlight: $select.search"></div>
+                  <small>
+        <b>Descripcion:</b> {{producto.descripcion}}
+        <b>Barcode: </b><span ng-bind-html="''+producto.barcode | highlight: $select.search"></span>
+      </small><!--
+                  <span ng-bind="producto.titulo"></span>-->
+                </ui-select-choices>
+    
+              </ui-select>  
+             </div>  
+      </div>
+ </div>
+<div class="row">
+                <div class="form-group">
+                           
+                          <div class="col-md-2">
+                            Precio de costo 
+                            <input type="number"  min="0"class="form-control" name="precioCosto"  ng-model="vm.entrada.precioCosto" required="true">
+                        </div>
+                         <div class="col-md-3">
+                            Margen de utilidad (%)
+                            <select  id="margen" ng-model="vm.entrada.margen" ng-options="option.margen as option.margen  for option in vm.margenes2" ng-change="vm.calculo()">
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            Precio de venta 
+                            <input type="number"  min="0"class="form-control" name="precioVenta"  ng-model="vm.entrada.precioVenta" required="true">
+                        </div> 
+
+
+                        <div class="col-md-2">
+                            Impuesto
+                            <select  id="impuesto" ng-model="vm.entrada.impuesto" ng-options="option.tasa as option.tasa  for option in vm.impuestos2" >
+                            </select>
+                        </div>
+
+                        <!--
+                        <div class="col-md-2">
+                            Precio de venta 
+                            <input type="number"  min="0"class="form-control" name="precioVenta"  ng-model="vm.entrada.precioVenta" required="true">
+                        </div> 
+                        <div class="col-md-2">
+                            Impuesto 
+                            <input type="number"  min="0"class="form-control" name="impuesto"  ng-model="vm.entrada.impuesto" required="true">
+                        </div>-->
+                        <div class="col-md-2">
+                            Cantidad 
+                            <input type="number"  min="0"class="form-control" name="cantidad"  ng-model="vm.entrada.cantidad" required="true">
+                        </div>
+                           
+                </div>  
+</div>
+
+<div class="row">
+                <div class="form-group">
+                           
+                          <div class="col-md-4">
+                            # Factura
+                            <input type="text"  min="0"class="form-control" name="factura"  ng-model="vm.entrada.factura" required="true">
+                        </div>
+                        
+                           
+                </div>  
+</div>
+
+<div class="row">
+        <div class="form-group">
+            <div class="col-md-6">
+              Proveedor
+
+              <ui-select ng-model="vm.entrada.proveedor" required="true"
+                theme="bootstrap"
+                class="select-proveedor"
+                title="Seleccione un proveedor" id="proveedor">
+                
+                <ui-select-match placeholder="Indique un proveedor...">{{$select.selected.nombreRazon}}</ui-select-match >
+                
+                <ui-select-choices repeat="proveedor as proveedor in vm.proveedors"
+
+                  refresh="vm.refreshProveedors($select.search)"
+                  refresh-delay="0">  
+                 <!-- <div ng-bind-html="proveedor.nombreRazon | highlight: $select.search"></div>
+                  -->
+                  <span ng-bind="proveedor.nombreRazon"></span>
+                </ui-select-choices>
+    
+              </ui-select>  
+             </div>  
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+         <div class="col-md-2">
+              Deposito 
+              <select  id="deposito" ng-model="vm.entrada.deposito" ng-options="option as option.descripcion for option in vm.depositos2" required="true"></select>
+          </div> 
+          <div class="col-md-2">
+              Sucursal 
+              <select  id="sucursal" ng-model="vm.entrada.sucursal" ng-options="option as option.descripcion for option in vm.sucursales2" required="true"></select>
+          </div> 
+          <div class="col-md-4">
+              Ubicacion física
+              <input type="text"  min="0"class="form-control" name="ubicacionFisica"  ng-model="vm.entrada.ubicacionFisica" >
+          </div>
+    </div> 
+</div>
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar cambios
+            </button>
+            <a class="btn btn-danger" href="/entrada">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+
+</section>

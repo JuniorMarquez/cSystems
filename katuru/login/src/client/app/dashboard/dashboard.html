@@ -1,0 +1,141 @@
+
+   <!-- <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="today-datas">
+                        <li class="blightblue">
+                            <p> 
+                            <div class="pull-left"><i class="fa fa-newspaper-o"></i></div>
+                            <div class="datas-text pull-right">
+                        <span class="bold">{{vm.cuentas.length}} {{vm.data.nombres}}</p>
+                            <p>
+                                 Cuentas Activas</p></span> 
+                            </div>
+                           
+                        </li>
+
+                        <li class="blightblue">
+                            <div class="pull-left"><i class="fa fa-users"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">{{vm.people.length}}</span> Socios registrados
+                                </br> <a class="btn btn-success btn-xs" href="/socio">
+              Acceder
+            </a>
+                            </div>
+                           
+                        </li>
+                        <li class="borange">
+                            <div class="pull-left"><i class="fa fa-cc"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">{{vm.ccp |verificador:'tipoOperacion' :'cantidad'}}</span> C.C.P
+                            </div>
+                           
+                        </li>
+                        <li class="borange">
+                            <div class="pull-left"><i class="fa fa-university"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">Bs.F.    {{(vm.ccp|verificador:'tipoOperacion' :'cantidad')* (vm.configuracion|sumByKey:'precioCcp')}},00 </span> Plata en caja
+                            </div>
+                            
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget wviolet">
+                        <div ht-widget-header title="Ultimos socios registrados"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombres</th>
+                                        <th>Cedula</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.people">
+                                        <td>{{p.nombres}}</td>
+                                        <td>{{p.cedula}}</td>
+                                  
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="widget-foot">
+                            
+                        </div>
+
+                    </div>
+                </div>-->
+                <!--
+                <div class="col-md-6">
+                    <div class="widget wgreen">
+                        <div ht-widget-header title="{{vm.news.title}}"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <small>{{vm.news.description}}</small>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div> -->
+           <!-- </div>
+        </di
+     </section>-->
+    <section class="matter">
+        <div class="container">
+    <section class="mainbar" ><center>
+<img src="images/4376584.png" /></center>
+
+  <div class="panel panel-primary">
+   <div class="panel-heading"><!-- Inicio de Session -->
+      
+   </div>
+    <div class="panel-body">
+
+<form name="vm.form" model="vm.login" data-ng-submit="vm.login()" >
+   <center> <label>
+  
+        </label> <i class="fa fa-user"></i> 
+     <input type="text" name="vm.login.usuario" placeholder="Usuario" id="vm.login.usuario" ng-model="vm.login.usuario" autocomplete="off" required="true">
+
+    
+    </br></br>
+    <label>
+      </label> <i class="fa fa-key"></i> 
+      <input type="text" name="pass" autocomplete="off" placeholder="Contraseña"ng-model="vm.login.pass" required="true"
+      >
+    </br></br>
+   
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="fa fa-arrow-right"></i> Entrar
+            </button>
+           <!-- <a class="btn btn-danger" href="/socio/{{vm.cuent.id_socio}}">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>-->
+        </div>
+
+       <!-- <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>-->
+</center>
+      </form>
+    
+<!-- 
+        Sr.(a): <span>{{datos.nombres}}</span> {{datos.apellidos}} --> <br><div class="aviso">{{vm.login.mensaje}}</br></div>
+     
+
+    </div>
+  </div>
+  
+
+</section>
+      </div>
+      </section>

@@ -1,0 +1,52 @@
+<section class="mainbar" data-ng-init="vm.toViewSucursal()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de Sucursal
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <!--<formly-form model="vm.sucursal" fields="vm.formFields">
+        </formly-form>-->
+<div class="row" >
+    <div class="form-group">
+        <div class="col-md-8">
+        Descripcion
+            <input type="text"  class="form-control" name="descripcion"   ng-model="vm.sucursal.descripcion" required="true" readonly="true">
+        </div>
+
+        <div class="col-md-3">
+   <!-- IdE-->
+            <input type="hidden"  class="form-control" name="idE"  ng-model="vm.cate.idE" required="true">
+        </div>
+         <div class="col-md-3">
+  <!--  establecimiento-->
+            <input type="hidden"  class="form-control" name="establecimiento"  ng-model="vm.cate.establecimiento" required="true">
+        </div>
+  <div class="col-md-3">
+  <!--  idU-->
+            <input type="hidden"  class="form-control" name="idU"  ng-model="vm.cate.idU" required="true">
+        </div>
+    </div>
+  </div>
+
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/ajuste">
+          <i class="glyphicon glyphicon-cog"></i> Ajustes
+        </a>
+       <!-- <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.sucursal">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/sucursal">
+          <i class="glyphicon glyphicon-list"></i> List Sucursals
+        </a>-->
+      </div>
+
+    </div>
+  </div>
+
+</section>

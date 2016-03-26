@@ -1,0 +1,829 @@
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+ <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker(
+                  { format: 'DD/MM/YYYY',
+                  locale: 'es'});   
+            });
+
+
+
+          
+
+        </script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $("#myModal").on('shown.bs.modal', function(){
+/*document.getElementById('producto').focus();
+       /* $(this).find('#cantidad').focus();*/
+
+    });
+
+});
+
+$(document).ready(function(){
+
+    $("#myModalProceder").on('shown.bs.modal', function(){
+document.getElementById('totalEfectivo').focus();
+
+       /* $(this).find('#cantidad').focus();*/
+
+    });
+
+});
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    
+//document.getElementById('barcode').focus();
+       /* $(this).find('#cantidad').focus();*/
+$("form").keypress(function(e) {
+        if (e.which == 13) {
+          document.getElementById('agregar').focus();
+
+            return false;
+        }
+    });
+;
+
+  
+
+});
+
+
+</script>
+
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Nueva Venta
+    </div>
+    <div class="hbox hbox-auto-xs  ">
+ 
+<form data-ng-submit="vm.create()" novalidate  >
+<div class="col w-xl lt b-r">
+    <div class="vbox">   
+
+
+
+
+
+
+<div class="row" >
+<div class="form-group">
+
+
+ </div>
+  </div>
+       
+ <!--
+<div class="form-group">
+    <div class="col-md-6">
+    <div date-picker timezone="Europe/London"></div>
+    <input ui-date="dateOptions" name="DateOfBirth">
+    <input ui-date ui-date-format="DD, d MM, yy" ng-model="myDate">
+    </div>
+    </div> -->
+
+   
+
+
+<div class="row" >
+ 
+<div class="form-group">
+    <div class="col-md-6">
+      
+
+ <input type="text" class="form-control" 
+               ng-model="vm.vent.numeroFactura" 
+               id="numeroFactura"   name="numeroFactura"
+               tabindex="1" placeholder="# Factura">
+
+    </div>
+    </div>
+    </div>
+<div class="row" >
+ <div class="form-group">
+    <div class="col-md-6">
+
+              Cedula/ Rif del Cliente
+              </div>
+                 <div class="col-md-2"> 
+                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" title="Agregar cliente"
+
+        data-target="#myModal" ng-click="vm.limpiarCampos()" >
+        <i class="fa fa-user-plus"></i>
+      </button>
+      </div>
+      </div>
+      </div>
+
+<div class="row" >
+ <div class="form-group">
+    <div class="col-md-6">
+
+              
+              </div>
+              </div>
+              </div>
+              <div class="row" >
+              <div class="form-group">
+    <div class="col-md-8">
+              <ui-select ng-model="vm.vent.cliente" required="true" ng-click="vm.refreshClientes()"
+                 theme="bootstrap" style="min-width: 250px;"
+                reset-search-input="true" tabindex="1"
+                title="Cedula/Rif"  id="cedulaRif">
+                <ui-select-match placeholder="Cedula/Rif...">{{$select.selected.cedulaRif}}</ui-select-match >
+                
+                <ui-select-choices repeat="cliente as cliente in vm.clientes2"
+
+                  refresh="vm.refreshClientes($select.search)"
+                  refresh-delay="0">  
+                  <div ng-bind-html="cliente.cedulaRif | highlight: $select.search"></div>
+                  <small>
+        <b>Nombre / Razón:</b> {{cliente.nombreRazon}}
+       <!-- <b>direccion: </b><span ng-bind-html="''+cliente.direccion | highlight: $select.search"></span>-->
+       <!-- 
+         <b>Nombre / Razon: </b><span ng-bind-html="''+cliente.nombreRazon | highlight: $select.search"></span>
+        -->
+      </small><!--
+                  <span ng-bind="producto.titulo"></span>-->
+                </ui-select-choices>
+    
+              </ui-select>  
+                
+      </div>
+      
+              
+</div>
+</div>
+{{vm.vent.cliente.nombreRazon}}
+<!-- inicio columna -->
+
+<hr/>
+<div id="definidor" style="visibility:visible;">
+  <tabset>
+
+<tab heading="COD.">
+
+
+
+   <div class="row" >
+ 
+<div class="form-group">
+              <div class="col-md-8">
+              <ui-select ng-model="vm.vent.item.entrada"  required="true" ng-click="vm.refreshEntradas3()"
+              autofocus="true"
+              on-select="vm.activar()"
+                 theme="bootstrap" style="min-width: 300px;"
+                reset-search-input="true" tabindex="1"
+                title="Ingrese el COD"  id="cod">
+                <ui-select-match placeholder="Ingrese el COD...">{{$select.selected.producto.cod}}</ui-select-match >
+                
+                <ui-select-choices repeat="entrada as entrada in vm.entradas4"
+
+                  refresh="vm.refreshEntradas3($select.search)"
+                  refresh-delay="0">  
+                  <div ng-bind-html="entrada.producto.cod | highlight: $select.search"></div>
+                  <small>
+        <b>Descripcion:</b> {{entrada.producto.descripcion}}
+       <!-- <b>Barcode: </b><span ng-bind-html="''+entrada.producto.barcode | highlight: $select.search"></span>-->
+         <br/><b>Stock: </b><span ng-bind-html="''+entrada.cantidad | highlight: $select.search"></span>
+         <b>Precio: </b><span ng-bind-html="''+entrada.precioVenta | highlight: $select.search"></span>
+         <br/><b>Fecha de entrada: </b><span ng-bind-html="''+entrada.createdAt | date : 'dd / MM / yyyy' | highlight: $select.search"></span>
+      </small><!--
+                  <span ng-bind="producto.titulo"></span>-->
+                </ui-select-choices>
+    
+              </ui-select> 
+              </div>
+              <!--<div class="col-md-2"> 
+                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+
+        data-target="#myModal" ng-click="vm.limpiarCampos()" >
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+      </div> -->
+
+</div>
+</div>
+
+
+
+
+</tab>
+      <tab heading="Codigo de barras">  
+
+              <div class="row" >
+ 
+<div class="form-group">
+              <div class="col-md-8">
+              <ui-select ng-model="vm.vent.item.entrada"  required="true" ng-click="vm.refreshEntradas2()"
+              autofocus="true"
+              on-select="vm.activar()"
+                 theme="bootstrap" style="min-width: 300px;"
+                reset-search-input="true" tabindex="1"
+                title="Ingrese el codigo de barras"  id="barcode">
+                <ui-select-match placeholder="Ingrese el codigo de barras...">{{$select.selected.producto.barcode}}</ui-select-match >
+                
+                <ui-select-choices repeat="entrada as entrada in vm.entradas3"
+
+                  refresh="vm.refreshEntradas2($select.search)"
+                  refresh-delay="0">  
+                  <div ng-bind-html="entrada.producto.barcode | highlight: $select.search"></div>
+                  <small>
+        <b>Descripcion:</b> {{entrada.producto.descripcion}}
+       <!-- <b>Barcode: </b><span ng-bind-html="''+entrada.producto.barcode | highlight: $select.search"></span>-->
+         <br/><b>Stock: </b><span ng-bind-html="''+entrada.cantidad | highlight: $select.search"></span>
+         <b>Precio: </b><span ng-bind-html="''+entrada.precioVenta | highlight: $select.search"></span>
+         <br/><b>Fecha de entrada: </b><span ng-bind-html="''+entrada.createdAt | date : 'dd / MM / yyyy' | highlight: $select.search"></span>
+      </small><!--
+                  <span ng-bind="producto.titulo"></span>-->
+                </ui-select-choices>
+    
+              </ui-select> 
+              </div>
+              <!--<div class="col-md-2"> 
+                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+
+        data-target="#myModal" ng-click="vm.limpiarCampos()" >
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+      </div> -->
+
+</div>
+</div>
+</tab>
+<tab heading="Nombre">
+ <div class="row" >
+ 
+<div class="form-group">
+              <div class="col-md-8">
+              <ui-select ng-model="vm.vent.item.entrada"  required="true" ng-click="vm.refreshEntradas4()"
+              autofocus="true"
+              on-select="vm.activar()"
+                 theme="bootstrap" style="min-width: 300px;"
+                reset-search-input="true" tabindex="1"
+                title="Ingrese el nombre del producto"  id="nombre">
+                <ui-select-match placeholder="Ingrese el nombre del producto...">{{$select.selected.producto.titulo}}</ui-select-match >
+                
+                <ui-select-choices repeat="entrada as entrada in vm.entradas5"
+
+                  refresh="vm.refreshEntradas4($select.search)"
+                  refresh-delay="0">  
+                  <div ng-bind-html="entrada.producto.titulo | highlight: $select.search"></div>
+                  <small>
+        <b>Descripcion:</b> {{entrada.producto.descripcion}}
+       <!-- <b>Barcode: </b><span ng-bind-html="''+entrada.producto.barcode | highlight: $select.search"></span>-->
+         <br/><b>Stock: </b><span ng-bind-html="''+entrada.cantidad | highlight: $select.search"></span>
+         <b>Precio: </b><span ng-bind-html="''+entrada.precioVenta | highlight: $select.search"></span>
+         <br/><b>Fecha de entrada: </b><span ng-bind-html="''+entrada.createdAt | date : 'dd / MM / yyyy' | highlight: $select.search"></span>
+      </small><!--
+                  <span ng-bind="producto.titulo"></span>-->
+                </ui-select-choices>
+    
+              </ui-select> 
+              </div>
+              <!--<div class="col-md-2"> 
+                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+
+        data-target="#myModal" ng-click="vm.limpiarCampos()" >
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+      </div> -->
+
+</div>
+</div>
+
+</tab>
+
+
+</tabset> 
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-8">
+      Producto: {{vm.vent.item.entrada.producto.titulo}} 
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-8">
+     (stock: {{vm.vent.item.entrada.cantidad}})
+
+    </div>
+  </div>
+
+</div>
+
+<div class="row" >
+    <div class="form-group">
+
+<div class="col-md-3">
+             Cant.  
+                <input type="number" class="form-control" 
+               ng-model="vm.vent.item.cantidad" 
+               id="cantidad" ng-change="vm.calculo()" max="{{vm.vent.item.entrada.cantidad}}" min="1" name="cantidad"
+               tabindex="1" disabled="true">
+             </div>  
+
+             <div class="col-md-4">
+           P. base: 
+                 <input type="number" class="form-control" tabindex="-1" 
+                  ng-model="vm.vent.item.entrada.precioVenta" 
+                  id="precioVenta" ng-change="vm.calculo()" disabled="true">
+        </div>
+       <div class="col-md-2">
+              Imp.
+               <input type="text" class="form-control" tabindex="-1"
+               ng-model="vm.vent.item.entrada.impuesto" ng-change="vm.activar()"
+               id="cantidad" readonly="true">
+         </div>
+         <div class="col-md-3">
+      P. b + Imp
+<input type="text" class="form-control" tabindex="-1"
+       ng-model="vm.vent.item.pbimp" 
+       id="pbimp" readonly="true"
+       ></div>
+       
+      </div>
+</div>
+
+
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-3">
+      Sub-Total
+    </div>
+ 
+  
+  
+    <div class="col-md-4">
+      Dcto %: ({{vm.vent.item.descuento | number:1}})
+     
+  </div>
+      <div class="col-md-3">
+      Total
+    </div>
+  </div>
+</div>
+
+
+<div class="row" >
+  <div class="form-group">
+    <div class="col-md-3">
+      <input type="text" class="form-control" tabindex="-1"
+       ng-model="vm.vent.item.subtotal" 
+       id="subtotal" readonly="true"
+       >
+    </div>
+
+
+    <div class="col-md-4">
+      <input type="number" class="form-control" tabindex="-1" 
+                  ng-model="vm.vent.item.descuentoPor" 
+                  id="descuentoPor" ng-change="vm.calculo()" disabled="true" min="0" max="100" >
+    </div>
+
+
+
+    <div class="col-md-3">
+      <input type="text" class="form-control" tabindex="-1"
+       ng-model="vm.vent.item.total" 
+       id="total" readonly="true"
+       >
+    </div>
+
+
+ 
+      <button 
+ tooltip-placement="{{placement.selected}}" uib-tooltip="On the {{placement.selected}}"  title="Agregar a la lista"
+       ng-enter="vm.agregar2()" disabled="true" id="agregar" type="button" tabindex="1" name="agregar" class="btn btn-success btn-xs"   ng-click="vm.agregar2()"ng-focus="vm.agregar2()"><i class="fa fa-cart-plus"></i>
+      </button>
+
+  </div>
+</div>
+</div>  
+  <input type="hidden" class="form-control" 
+                  ng-model="vm.vent.item.entrada.producto.titulo" 
+                  id="titulo" >
+        <input type="hidden" class="form-control"
+               ng-model="vm.vent.item.entrada.factura" 
+               id="factura" >
+
+
+    
+       
+       
+       
+   
+
+
+
+
+
+<!--<hr/>
+<div class="row" >
+
+<div class="form-group">
+ <div class="col-md-4">
+        
+        <button ng-enter="vm.agregar()" disabled="true" id="agregar" type="button" tabindex="1" name="agregar" class="btn btn-primary btn-xs"   ng-click="vm.agregar()"><i class="fa fa-cart-plus"></i>
+</button>
+         </div>
+
+              
+
+
+            
+     
+     
+</div>       
+</div> -->
+
+
+
+
+ 
+
+        <div class="modal fade" id="myModalProceder" role="dialog" aria-labelledby="myModalLabelProceder"
+data-backdrop="static" data-keyboard="false"
+        >
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"  tabindex="-1"  class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" tabindex="-1"  id="myModalLabelProceder">Validar Pago</h4>
+      </div>
+      <div class="modal-body">
+
+<div class="total">Total apagar: {{vm.vent.total | number:2}}</div> 
+<div class="total">Resta: {{vm.vent.resta | number:2}}</div> 
+
+<div class="total">Vuelto: {{vm.vent.vuelto | number:2}}</div> 
+
+
+<div class="wrapper-table-vent-items">
+          <table class="tablaMax table table-striped table-condensed table-hover table-bordered ">
+            <tr>
+             Forma de pago
+              
+              
+              
+            </tr>
+            <tr>
+             <td><label>Efectivo</label></td>
+                <td>
+                </td>
+                <td> 
+                
+                </td>
+                <td>
+                
+                </td>
+                <td><input type="number" class="form-control" tabindex="1" 
+                  ng-model="vm.vent.totalEfectivo" 
+                  id="totalEfectivo"  ng-focus="vm.calculoPago()"min="1" ng-change="vm.calculoPago()">
+                </td>
+           
+            
+             <tr>
+              
+              <td><input type="checkbox" ng-model="checked"><label>Credito:
+    
+  </label><br/></td>
+               <td colspan="2" >
+               
+               
+
+         
+ 
+            <div class="form-group" ng-show="checked">
+              <div class="col-md-5">
+          A pagar el:
+          </div>
+            <div class="col-md-7">
+                <div class='input-group date' id='datetimepicker1' datetimepicker  ng-model="vm.vent.fechaCred" >
+
+                    <input type='text' class="form-control" >
+                    <span class="input-group-addon" >
+                        <span class="glyphicon glyphicon-calendar" ></span>
+                    </span>
+                </div>
+            </div>
+          
+       
+       
+   
+
+
+                </td>
+                <td>
+               <input type="number" class="form-control" tabindex="1" 
+                  ng-model="vm.vent.montoCredito" 
+                  id="montoCredito" ng-change="vm.calculoPago()" min="1" placeholder="Monto" ng-show="checked">
+                </td>
+                <td><input type="number" class="form-control" tabindex="1" 
+                  ng-model="vm.vent.totalCredito" 
+                  id="totalCredito" ng-change="vm.calculoPago()" min="1" disabled="true" ng-show="checked">
+                </td>
+            </tr>
+
+   
+
+          </table>
+         
+</div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-default" tabindex="1" data-dismiss="modal">Cerrar</button>
+        <button  class="btn btn-success"   ng-click="vm.proceder()" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i>Aceptar</button>
+
+
+        <!--
+        <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Aceptar</button>-->
+              <!--
+        <button type="button" class="btn btn-primary">Aceptar</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+     
+<hr/>
+
+        <div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel"
+data-backdrop="static" data-keyboard="false"
+        >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"  tabindex="-1"  class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" tabindex="-1"  id="myModalLabel">Agregar Cliente</h4>
+      </div>
+      <div class="modal-body">
+    
+<!-- ========================================================== -->
+ 
+      <div class="row" >
+        <div class="form-group">
+          <div class="col-md-7">
+          <input type="text" class="form-control" tabindex="1" 
+                  ng-model="vm.clienteNew.nombreRazon" 
+                  id="clienteNewnombreRazon" placeholder="Nombre / Razon Social">
+          </div>
+          <div class="col-md-4">
+          <input type="text" class="form-control" tabindex="1" 
+                  ng-model="vm.clienteNew.cedulaRif" 
+                  id="clienteNewcedulaRif" placeholder="C.I / Rif">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="form-group"> 
+        </div>
+      </div>
+      <div class="row" >
+        <div class="form-group"> 
+            <div class="col-md-7">
+              <textarea class="form-control" rows="2" tabindex="1" name="clienteNewdireccion"   ng-model="vm.clienteNew.direccion" id="clienteNewdireccion" placeholder="Direccion" ></textarea>
+          </div>
+           <div class="col-md-4">
+          <input type="text" class="form-control" tabindex="1" 
+                  ng-model="vm.clienteNew.telefono" 
+                  id="clienteNewtelefono" placeholder="Telefono">
+          </div>
+        </div>
+      </div>
+       <div class="row" >
+        <div class="form-group"> 
+        </div>
+      </div>
+
+
+    
+
+<!-- ============================================================-->
+
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" tabindex="1" data-dismiss="modal">Cerrar</button>
+        <button  class="btn btn-success"   ng-click="vm.agregarCliente()" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i>Aceptar</button>
+
+
+        <!--
+        <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Aceptar</button>-->
+              <!--
+        <button type="button" class="btn btn-primary">Aceptar</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+        <formly-form model="vm.vent" fields="vm.formFields" form="vm.form">
+        </formly-form>
+-->
+
+</div>
+  
+
+
+
+
+<!-- =================================================== -->
+
+
+
+<!-- =================================================== -->
+
+
+
+
+
+
+        
+        <!--<table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="vent in vm.vent.col">
+              <td data-title="'Producto'" >{{vent.total}}</td>
+              
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/vent/{{vent.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/vent/{{vent.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(vent)" item="vent">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>-->
+      
+
+
+
+
+
+
+<!-- fin columna -->
+
+          
+    </div>
+  </div>
+  <!-- /column -->
+
+  <!-- column -->
+  <div class="col  lt b-r bg-light">
+    <div class="vbox">
+     <div class="wrapper-table-vent-items" ng-if="vm.vent.items.length">
+          <table class="tablaMax table table-striped table-condensed table-hover table-bordered ">
+            <tr>
+              <th>Producto</th>
+              <th>Cant.</th>
+              <th>Precio</th>
+              <th>Imp.</th>
+              <th>Sub total</th>
+              <th>Dscto.</th>
+              <th>Total</th>
+               <th>Accion</th>
+            </tr>
+
+            <tr ng-repeat="item in vm.vent.items track by $index">
+              <td>{{ item.producto }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.precioVenta }}</td>
+              <td>{{ item.impuesto }}</td>
+              <td>{{ item.subtotal | number:2}}</td>
+              <td>{{ item.descuento | number:2}}</td>
+              <td>{{ item.total | number:2}}</td>
+              <td><a class="btn btn-danger btn-xs" ng-click="vm.borrar2($index)"><i class="glyphicon glyphicon-remove"></i></a></td>
+            </tr>
+
+          </table>
+         
+        </div>
+         
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+      <hr/>
+<div id="final" style="visibility:hidden;" >
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-8">
+      <div class="total">  <h4>Sub-Total.: {{vm.vent.subtotal | number:2}}</h4>
+      </div>
+  </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-3">
+      <div class="total">  Dscto.:
+      </div>
+    </div>
+    <div class="col-md-3">
+      <input type="number" class="form-control" tabindex="-1"
+       ng-model="vm.vent.descuento" ng-change="vm.dsctoGral()"
+       id="dsctoGral" min="0" max="100" style="visibility:hidden;" 
+       >
+    </div>
+    <div class="col-md-3">
+( {{vm.vent.dsctoGral | number:2}} )      
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">    
+    <div class="col-md-8">
+      <div class="total">  <h3>Total: {{vm.vent.total | number:2}}</h3> 
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="form-group">
+
+
+<button type="button" class="btn btn-danger btn-xs" id="cancelar" ng-click="vm.cancelar()">
+        <i class="glyphicon glyphicon-remove"></i>Cancelar
+
+      </button>
+
+
+<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" 
+
+        data-target="#myModalProceder"  >
+        <i class="fa fa-check-square-o"></i>Validar
+
+      </button>
+            
+            
+      <button type="submit" style="visibility:hidden;"disabled="true" id="guardar"class="btn btn-success btn-xs" >
+              <i class="glyphicon glyphicon-ok" ></i> Guardar
+            </button>
+</div>
+</div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+      
+
+
+
+     
+
+      </form>
+
+    </div>
+  
+
+
+
+  </div>
+
+</section>

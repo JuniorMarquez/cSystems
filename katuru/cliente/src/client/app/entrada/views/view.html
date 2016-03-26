@@ -1,0 +1,106 @@
+<section class="mainbar" data-ng-init="vm.toViewEntrada()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de entrada de producto
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+    <!--    <formly-form model="vm.entrada" fields="vm.formFields">
+        </formly-form>
+      -->
+<div class="row">
+                <div class="form-group">
+                           
+                          <div class="col-md-8">
+                            Producto
+                            <input type="text"  min="0"class="form-control" name="factura"  ng-model="vm.entrada.producto.titulo" disabled="true">
+                        </div>
+                         <div class="col-md-3">
+                            codigo de Barras
+                            <input type="text"  min="0"class="form-control" name="factura"  ng-model="vm.entrada.producto.barcode" disabled="true">
+                        </div>
+                           
+                </div>  
+</div>
+<div class="row">
+                <div class="form-group">
+                           
+                          <div class="col-md-4">
+                            # Factura
+                            <input type="text"  min="0"class="form-control" name="factura"  ng-model="vm.entrada.factura" disabled="true">
+                        </div>
+                        
+                           
+                </div>  
+</div>
+<div class="row">
+                <div class="form-group">
+                           
+                          <div class="col-md-6">
+                            Proveedor
+                            <input type="text"  min="0"class="form-control" name="factura"  ng-model="vm.entrada.proveedor.nombreRazon" disabled="true">
+                        </div>
+                        
+                           
+                </div>  
+</div>
+<div class="row">
+                <div class="form-group">
+                           
+                          <div class="col-md-2">
+                            Precio de costo 
+                            <input type="number"  min="0"class="form-control" name="precioCosto"  ng-model="vm.entrada.precioCosto" disabled="true">
+                        </div>
+                        <div class="col-md-2">
+                            Precio de venta 
+                            <input type="number"  min="0"class="form-control" name="precioVenta"  ng-model="vm.entrada.precioVenta" disabled="true">
+                        </div> 
+                        <div class="col-md-2">
+                            Impuesto 
+                            <input type="number"  min="0"class="form-control" name="impuesto"  ng-model="vm.entrada.impuesto" disabled="true">
+                        </div>
+                        <div class="col-md-2">
+                            Cantidad 
+                            <input type="number"  min="0"class="form-control" name="cantidad"  ng-model="vm.entrada.cantidad" disabled="true">
+                        </div>
+                           
+                </div>  
+</div>
+<div class="row">
+                <div class="form-group">
+                           
+                          <div class="col-md-2">
+                            Bodega
+                            <input type="text"  min="0"class="form-control" name="precioCosto"  ng-model="vm.entrada.deposito.descripcion" disabled="true">
+                        </div>
+                        <div class="col-md-2">
+                            Sucursal 
+                            <input type="text"  min="0"class="form-control" name="precioVenta"  ng-model="vm.entrada.sucursal.descripcion" disabled="true">
+                        </div> 
+                        <div class="col-md-4">
+                            Ubicación física 
+                            <input type="text"  min="0"class="form-control" name="ubicacionFisica"  ng-model="vm.entrada.ubicacionFisica" disabled="true">
+                        </div>                          
+                </div>  
+</div>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/entrada/{{vm.entrada.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove()" item="vm.entrada">
+          <i class="glyphicon glyphicon-remove-circle"></i> Borrar
+        </a>
+        <a class="btn btn-primary" href="/inventario">
+          <i class="glyphicon glyphicon-list"></i> Listado de entradas
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

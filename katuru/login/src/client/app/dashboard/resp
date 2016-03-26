@@ -1,0 +1,11 @@
+ <p>
+      Selecciona:
+      <select ng-model="vm.url" ng-change="vm.buscaEnRegion()">
+       <option value="http://52.33.127.122:1337/socio">Africa</option>
+        <option value="http://restcountries.eu/rest/v1/region/europe">Europa</option>
+        <option value="http://restcountries.eu/rest/v1/region/americas">America</option>
+      </select>
+  </p>
+  <ul>
+      <li ng-repeat="info in vm.infos">Nombre: <span>{{info.nombre}}</span>, Apellido {{info.apellido}}{{info.capital}} </li>
+  </ul>

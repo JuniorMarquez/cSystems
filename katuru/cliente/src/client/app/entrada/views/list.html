@@ -1,0 +1,45 @@
+<section class="mainbar">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Listado de Entradas 
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/entrada/create">
+          <i class="glyphicon glyphicon-open"></i> Agregar entrada de productos
+        </a>
+      </div>
+      <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Buscar" ng-model="searchFish">
+      </div>      
+    </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="entrada in vm.entradas2 | filter:searchFish">
+              <td data-title="'Producto'" >{{entrada.producto.titulo}}</td>
+              <td data-title="'Cantidad'" >{{entrada.cantidad}}</td>
+              <td data-title="'Fecha'" >{{entrada.createdAt | date : 'dd / MM / yyyy'}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="Ver detalles" href="/entrada/{{entrada.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Editar" href="/entrada/{{entrada.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta usted seguro(a) ?" ng-really-click="vm.remove(entrada)" item="entrada">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+</section>

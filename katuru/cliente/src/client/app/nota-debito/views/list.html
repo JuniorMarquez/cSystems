@@ -1,0 +1,38 @@
+<section class="mainbar">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      NotaDebito List
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+        <a type="button" class="btn btn-success" href="/nota-debito/create">
+          <i class="glyphicon glyphicon-open"></i> New NotaDebito
+        </a>
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="notaDebito in $data">
+              <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{notaDebito.name}}</td>
+              <td data-title="'Address'" sortable="'address'" filter="{'address': 'text'}">{{notaDebito.address}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default" title="View" href="/nota-debito/{{notaDebito.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default" title="Edit" href="/nota-debito/{{notaDebito.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(notaDebito)" item="notaDebito">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+</section>
